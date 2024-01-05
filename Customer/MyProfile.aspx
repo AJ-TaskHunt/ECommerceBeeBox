@@ -50,8 +50,12 @@
                                         <asp:Image ID="imgProfile" runat="server" CssClass="img-thumbnail" Width="155" Height="152" />
 
                                         <div class="middle pt-2">
-                                            <asp:LinkButton ID="lbtnEditDetails" runat="server" CssClass="btn btn-warning"          OnClick="lbtnEditDetails_Click">
+                                            <asp:LinkButton ID="lbtnEditDetails" runat="server" CssClass="btn btn-warning" OnClick="lbtnEditDetails_Click">
                                                 <i class="fa fa-pencil"></i> Edit details
+                                            </asp:LinkButton>
+
+                                            <asp:LinkButton ID="lbtnUpdatePassword" runat="server" CssClass="btn btn-warning" OnClick="lbtnUpdatePassword_Click">
+                                                <i class="fa fa-key"></i> Change Password
                                             </asp:LinkButton>
                                         </div>
                                     </div>

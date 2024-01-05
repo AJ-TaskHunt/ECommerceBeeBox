@@ -44,6 +44,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script--%>
 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         #image-slider {
             max-width: 850px; /* Set the maximum width of the slider */
@@ -163,13 +166,13 @@
 
                                 <!-- <asp:Panel ID="panel1" runat="server" CssClass="form-inline">
                                    <form class="form-inline"> -->
-                                        <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                                            <i class="fa fa-search" aria-hidden="true"></i>
-                                        </button>
-                                    <!--  </form>
+                                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                                <!--  </form>
                                </asp:Panel> -->
 
-                               <%-- <a href="#" class="order_online">Order Online
+                                <%-- <a href="#" class="order_online">Order Online
                                 </a>--%>
                                 <asp:LinkButton ID="lbtnLoginOrLogout" runat="server" CssClass="order_online" CausesValidation="false" OnClick="lbtnLoginOrLogout_Click"></asp:LinkButton>
 

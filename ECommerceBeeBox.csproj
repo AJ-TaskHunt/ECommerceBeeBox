@@ -567,6 +567,7 @@
     <Content Include="CustomerTemplate\js\custom.js" />
     <Content Include="CustomerTemplate\js\jquery-3.4.1.min.js" />
     <Content Include="Customer\AboutUs.aspx" />
+    <Content Include="Customer\ChangePassword.aspx" />
     <Content Include="Customer\Console.aspx" />
     <Content Include="Customer\ContactUs.aspx" />
     <Content Include="Customer\Controller.aspx" />
@@ -1191,6 +1192,13 @@
     <Compile Include="Customer\AboutUs.aspx.designer.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Customer\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Customer\Console.aspx.cs">
       <DependentUpon>Console.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1578,6 +1586,7 @@
     <Content Include="CustomerTemplate\fonts\fontawesome-webfont.ttf" />
     <Content Include="CustomerTemplate\fonts\fontawesome-webfont.woff" />
     <Content Include="CustomerTemplate\fonts\fontawesome-webfont.woff2" />
+    <Content Include="libman.json" />
     <None Include="packages.config" />
     <Content Include="SellerTemplate\assets\extra-libs\datatables.net\package.json" />
     <Content Include="SellerTemplate\assets\extra-libs\datatables.net\Readme.md" />

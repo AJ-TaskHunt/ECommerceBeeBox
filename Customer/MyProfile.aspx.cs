@@ -101,5 +101,10 @@ namespace ECommerceBeeBox.Customer
             Response.Redirect("UpdateCustomer.aspx");
 
         }
+
+        protected void lbtnUpdatePassword_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ChangePassword.aspx");
+        }
     }
 }

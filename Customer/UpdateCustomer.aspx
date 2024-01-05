@@ -30,7 +30,40 @@
             }
         }
 
+        //alert box
+        function showSweetAlert() {
+            Swal.fire({
+                title: 'Profile Updated successfullly! successfully!',
+                text: 'Click OK to go back to Profile',
+                icon: 'success',
+                didOpen: () => {
+                    // Select the element you want to remove and remove it
+                    const niceSelectElement = document.querySelector('.nice-select swal2-select open');
+                    const extraElement = document.querySelector('.nice-select swal2-select');
+
+                    if (niceSelectElement || extraElement) {
+                        niceSelectElement.remove();
+                        extraElement.remove();
+                    }
+                }
+            }).then(function (result) {
+                if (result.isConfirmed) {
+                    window.location.href = 'MyProfile.aspx';
+                }
+            });
+        }
+
     </script>
+
+    <style>
+        .swal2-select.nice-select {
+            display: none !important;
+        }
+
+        .nice-select swal2-select open {
+            display: none !important;
+        }
+    </style>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -46,7 +79,7 @@
 
                     <div class="card-body text-center">
                         <!-- Profile picture image-->
-                        <asp:Image ID="imgProfile" runat="server" CssClass="img-thumbnail" Width="200px" Height="200" />
+                        <asp:Image ID="imgProfile" runat="server" CssClass="img-thumbnail" Width="250" Height="200" />
                         <!-- Profile picture upload button-->
                         <br />
                         <asp:FileUpload ID="fuImageProfile" runat="server" onchange="ImagePreview(this);" CssClass="form-control" ToolTip="Customer Image" accept=".png,.jpg,.jpeg" />
@@ -70,8 +103,9 @@
 
                         <!--Name Field -->
                         <div class="mb-3">
-                            <asp:RequiredFieldValidator ID="rfvName" runat="server" ErrorMessage="Name is Required" ControlToValidate="txtName" SetFocusOnError="true" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                            <label for="fullName">Full Name</label>
                             <asp:TextBox ID="txtName" runat="server" CssClass="form-control" placeholder="Enter Name" ToolTip="Enter Name"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvName" runat="server" ErrorMessage="Name is Required" ControlToValidate="txtName" SetFocusOnError="true" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="reName" runat="server" ErrorMessage="Name Must be in character only" ValidationExpression="^[a-zA-Z\s]+$" ControlToValidate="txtName" ForeColor="Red" SetFocusOnError="true" Display="Dynamic"></asp:RegularExpressionValidator>
                         </div>
 
@@ -81,32 +115,31 @@
                             <asp:TextBox ID="txtAddress" runat="server" CssClass="form-control" placeholder="Enter Address" TextMode="MultiLine" ToolTip="Enter Address"></asp:TextBox>
                         </div>
 
-                        <hr id="hrLine1" class="mt-0 mb-4">
-
                         <!--Email, Mobile, PostCode Field  -->
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
-                                <asp:RequiredFieldValidator ID="rgvEmail" runat="server" ErrorMessage="Email is Required" ControlToValidate="txtEmail" SetFocusOnError="true" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                <label for="eMail">Email</label>
                                 <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Enter Email" ToolTip="Enter Email"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rgvEmail" runat="server" ErrorMessage="Email is Required" ControlToValidate="txtEmail" SetFocusOnError="true" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="reEmail" runat="server" ErrorMessage="Please enter a valid Email" ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" ControlToValidate="txtEmail" ForeColor="Red" SetFocusOnError="true" Display="Dynamic"></asp:RegularExpressionValidator>
                             </div>
                             <div class="col-md-6">
-                                <asp:RequiredFieldValidator ID="rfvMobile" runat="server" ErrorMessage="Mobile Number is Required" ControlToValidate="txtMobile" SetFocusOnError="true" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                <label for="phone">Phone</label>
                                 <asp:TextBox ID="txtMobile" runat="server" CssClass="form-control" placeholder="Enter Mobile Number" ToolTip="Enter Mobile Number"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvMobile" runat="server" ErrorMessage="Mobile Number is Required" ControlToValidate="txtMobile" SetFocusOnError="true" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="reMobile" runat="server" ErrorMessage="Mobile number must be in 10 digits only" ValidationExpression="^\d{10}$" ControlToValidate="txtMobile" ForeColor="Red" SetFocusOnError="true" Display="Dynamic"></asp:RegularExpressionValidator>
                             </div>
 
                             <div class="col-md-6 pt-3">
-                                <asp:RequiredFieldValidator ID="rfvPostCode" runat="server" ErrorMessage="Post/Zip Code is Required" ControlToValidate="txtPostCode" SetFocusOnError="true" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                <label for="zIp">Pos/Zip Code</label>
                                 <asp:TextBox ID="txtPostCode" runat="server" CssClass="form-control" placeholder="Enter Post/Zip Code" ToolTip="Enter Post/Zip Code"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvPostCode" runat="server" ErrorMessage="Post/Zip Code is Required" ControlToValidate="txtPostCode" SetFocusOnError="true" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="rePostCode" runat="server" ErrorMessage="Please enter a valid Post/Zip Code" ValidationExpression="^[0-9]{6}$" ControlToValidate="txtPostCode" ForeColor="Red" SetFocusOnError="true" Display="Dynamic"></asp:RegularExpressionValidator>
                             </div>
 
                         </div>
 
-                        <hr id="hrLine2" class="mt-0 mb-4">
-
-                        <!--Password Field -->
+                        <%--<!--Password Field -->
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <ajaxToolkit:PasswordStrength DisplayPosition="AboveLeft" ID="PasswordStrength3" runat="server" TargetControlID="txtCurrentPssword" />
@@ -123,12 +156,10 @@
                                 <asp:RequiredFieldValidator ID="rfvConfirmPassword" runat="server" ErrorMessage="Confirm Password is Required" ControlToValidate="txtConfirmPassword" SetFocusOnError="true" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                                 <asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password" CssClass="form-control" placeholder="Enter Confirm Password" ToolTip="Enter Confirm Password"></asp:TextBox>
                             </div>
-                        </div>
+                        </div>--%>
 
                         <!--Button -->
-                        <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-primary" OnClick="btnUpdate_Click" />
-                        &nbsp;
-                        <asp:Button CausesValidation="false" ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-danger" />
+                        <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-warning" OnClick="btnUpdate_Click" />
                     </div>
                 </div>
             </div>
