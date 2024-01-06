@@ -51,6 +51,24 @@ namespace ECommerceBeeBox.Admin
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCategoryName;
 
         /// <summary>
+        /// fuCatgeoryImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuCatgeoryImage;
+
+        /// <summary>
+        /// regexImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator regexImage;
+
+        /// <summary>
         /// cbIsActive control.
         /// </summary>
         /// <remarks>
@@ -85,6 +103,15 @@ namespace ECommerceBeeBox.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnClear;
+
+        /// <summary>
+        /// imgCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgCategory;
 
         /// <summary>
         /// rCategoryData control.

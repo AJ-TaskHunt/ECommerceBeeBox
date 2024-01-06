@@ -39,9 +39,7 @@ namespace ECommerceBeeBox.Customer
             using (SqlCommand cmd = new SqlCommand("select * from Customer where CustomerId='" + Session["CustomerId"] + "' and IsActive=1 ", con))
             {
                 using (SqlDataReader drProfile = cmd.ExecuteReader())
-                {
-                    
-
+                {                  
                     if (drProfile.Read())
                     {
                         imgProfile.ImageUrl = drProfile["ImageUrl"].ToString();

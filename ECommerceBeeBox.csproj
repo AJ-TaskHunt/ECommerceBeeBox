@@ -1831,6 +1831,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AdminTemplate\CategoryImage\" />
     <Folder Include="App_Data\" />
     <Folder Include="SellerTemplate\ProductImage\" />
   </ItemGroup>

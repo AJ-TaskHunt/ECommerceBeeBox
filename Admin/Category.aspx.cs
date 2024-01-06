@@ -65,11 +65,18 @@ namespace ECommerceBeeBox.Admin
             {
                 drCheckCategoryData.Close();
 
+                if (fuCatgeoryImage.HasFile)
+                {
+                    string imagepath = "~/AdminTemplate/CategoryImage/" + fuCatgeoryImage.FileName;
+
+                    fuCatgeoryImage.SaveAs(Server.MapPath(imagepath));
+
                     cmd = new SqlCommand("sp_InsertCategoryData", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@CategoryName", txtCategoryname.Text);
                     cmd.Parameters.AddWithValue("@IsActive", cbIsActive.Checked);
+                    cmd.Parameters.AddWithValue("@ImageUrl", imagepath);
 
                     int ans = cmd.ExecuteNonQuery();
 
@@ -87,12 +94,18 @@ namespace ECommerceBeeBox.Admin
                     else
                     {
                         lblmsg.Visible = true;
-
                         lblmsg.CssClass = "alert alert-danger";
                         lblmsg.Text = "Error";
                     }
+                }
+                else
+                {
+                    lblmsg.Visible = true;
+                    lblmsg.CssClass = "Please select Image File";
+                    lblmsg.Text = "Error";
+                }
 
-                } 
+            }
 
         }
 
@@ -131,6 +144,7 @@ namespace ECommerceBeeBox.Admin
 
                 if (getDatabyID.Read())
                 {
+                    imgCategory.ImageUrl = getDatabyID["ImageUrl"].ToString();
                     txtCategoryname.Text = getDatabyID["CategoryName"].ToString();
                     cbIsActive.Checked = Convert.ToBoolean(getDatabyID["IsActive"].ToString());
                     hfCategoryId.Value = CategoryId.ToString();
@@ -141,14 +155,14 @@ namespace ECommerceBeeBox.Admin
                 btnClear.Text = "Cancel";
 
             }
-            else if(e.CommandName == "delete")
+            else if (e.CommandName == "delete")
             {
                 int CategoryId = Convert.ToInt32(e.CommandArgument.ToString());
 
-                cmd = new SqlCommand("sp_DeleteCategoryData",con);
+                cmd = new SqlCommand("sp_DeleteCategoryData", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@CategoryId",CategoryId);
+                cmd.Parameters.AddWithValue("@CategoryId", CategoryId);
 
                 cmd.ExecuteNonQuery();
 
@@ -169,25 +183,40 @@ namespace ECommerceBeeBox.Admin
             cmd.Parameters.AddWithValue("@IsActive", cbIsActive.Checked);
             cmd.Parameters.AddWithValue("@CategoryId", hfCategoryId.Value);
 
-            int UpdateCategoryData = cmd.ExecuteNonQuery();
-
-            if (UpdateCategoryData != 0)
+            if (fuCatgeoryImage.HasFile)
             {
-                lblmsg.Visible = true;
+                string imagepath = "~/AdminTemplate/CategoryImage/" + fuCatgeoryImage.FileName;
 
-                lblmsg.Text = "Category Updated";
-                lblmsg.CssClass = "alert alert-success";
+                fuCatgeoryImage.SaveAs(Server.MapPath(imagepath));
 
-                GetCategoryData();
+                string updateImage = "YES";
+                cmd.Parameters.AddWithValue("@UpdateImage", updateImage);
+                cmd.Parameters.AddWithValue("@ImageUrl", imagepath);
 
-                txtCategoryname.Text = "";
-                txtCategoryname.Focus();
-
-                cbIsActive.Checked = false;
+            }
+            else
+            {
+                string updateImage = "NO";
+                cmd.Parameters.AddWithValue("@UpdateImage", updateImage);
+                cmd.Parameters.AddWithValue("@ImageUrl", DBNull.Value);
             }
 
+            cmd.ExecuteNonQuery();
+
+            lblmsg.Visible = true;
+            lblmsg.Text = "Category Updated";
+            lblmsg.CssClass = "alert alert-success";
+
+            GetCategoryData();
+
+            txtCategoryname.Text = "";
+            txtCategoryname.Focus();
+
+            cbIsActive.Checked = false;
+
+
             btnAdd.Visible = true;
-            btnUpdate.Visible=false;
+            btnUpdate.Visible = false;
         }
     }
 }

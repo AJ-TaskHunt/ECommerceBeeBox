@@ -172,12 +172,12 @@
                                         <tr>
                                             <th class="table-plus">Product Name</th>
                                             <th>Image</th>
-                                            <th>Description</th>
+                                            <th>IsActive</th>
                                             <th>Price</th>
                                             <th>Quantity</th>
                                             <th>Category</th>
                                             <th>SubCategory</th>
-                                            <th>IsActive</th>
+                                            <th>Description</th>
                                             <th>Create Date</th>
                                             <th class="dataTable-nosort">Operations</th>
                                         </tr>
@@ -193,16 +193,14 @@
                                     <td>
                                         <asp:Image ID="imgProduct" runat="server" ImageUrl='<%# Eval("ProductImageUrl") %>' Width="40px" Height="40px" />
                                     </td>
-                                    <td><%# Eval("Description") %></td>
+                                    <td>
+                                        <asp:Label ID="lblIsActive" runat="server" Text='<%# (bool)Eval("IsActive") == true ? "Active" : "In-Active" %>' CssClass='<%# (bool)Eval("IsActive") == true ? "badge badge-success" : "badge badge-danger" %>'></asp:Label>
+                                    </td>
                                     <td><%# Eval("Price") %></td>
                                     <td><%# Eval("Quantity") %></td>
                                     <td><%# Eval("CategoryName") %></td>
                                     <td><%# Eval("SubCategoryName") %></td>
-
-                                    <td>
-                                        <asp:Label ID="lblIsActive" runat="server" Text='<%# (bool)Eval("IsActive") == true ? "Active" : "In-Active" %>' CssClass='<%# (bool)Eval("IsActive") == true ? "badge badge-success" : "badge badge-danger" %>'></asp:Label>
-                                    </td>
-
+                                    <td><%# Eval("Description") %></td>
                                     <td><%# Eval("CreateDate") %></td>
 
                                     <td>
