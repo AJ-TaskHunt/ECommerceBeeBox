@@ -42,22 +42,21 @@ namespace ECommerceBeeBox.Customer
             }
         }
 
-        protected void lbtnCategory_Click(object sender, EventArgs e)
+        protected void lbtnCategory_Command(object sender, CommandEventArgs e)
         {
-            string CatName = ((LinkButton)sender).CommandArgument;
+            string CatName = e.CommandArgument.ToString().Trim();
 
             switch (CatName)
             {
+                case "Console":
+                    Response.Redirect("Console.aspx");
+                    break;
                 case "Games":
                     Response.Redirect("Games.aspx");
                     break;
                 case "Controller":
                     Response.Redirect("Controller.aspx");
                     break;
-                case "Console":
-                    Response.Redirect("Console.aspx");
-                    break;
-
                 default:
                     Response.Redirect("Default.aspx");
                     break;

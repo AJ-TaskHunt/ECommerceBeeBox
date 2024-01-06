@@ -24,11 +24,9 @@
                                             <%--<p>
                                         Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
                                     </p>--%>
-
-                                            <asp:LinkButton CssClass="btn btn-warning float-right m-2 rounded-left" ID="lbtnCategory" runat="server" CommandArgument='<%# Eval("CategoryName") %>' OnClick="lbtnCategory_Click">
+                                            <asp:LinkButton CssClass="btn btn-warning float-right m-2 rounded-left" ID="lbtnCategory" runat="server" CommandArgument='<%# Eval("CategoryName") %>' OnCommand="lbtnCategory_Command">
                                                    Order Now <i class="fa fa-cart-plus"></i>
                                             </asp:LinkButton>
-
                                         </div>
                                     </div>
                                 </div>
