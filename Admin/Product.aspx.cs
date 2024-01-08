@@ -80,10 +80,10 @@ namespace ECommerceBeeBox.Admin
                 cmd = new SqlCommand("sp_InsertProductData", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@ProductName", txtProductName.Text);
-                cmd.Parameters.AddWithValue("@Description", txtProductDescription.Text);
-                cmd.Parameters.AddWithValue("@Price", txtProductPrice.Text);
-                cmd.Parameters.AddWithValue("@Quantity", txtProductQuantity.Text);
+                cmd.Parameters.AddWithValue("@ProductName", txtProductName.Text.Trim());
+                cmd.Parameters.AddWithValue("@Description", txtProductDescription.Text.Trim());
+                cmd.Parameters.AddWithValue("@Price", txtProductPrice.Text.Trim());
+                cmd.Parameters.AddWithValue("@Quantity", txtProductQuantity.Text.Trim());
                 cmd.Parameters.AddWithValue("@ProductImage", imgName);
                 cmd.Parameters.AddWithValue("@CategoryId", ddlCategory.SelectedValue);
                 cmd.Parameters.AddWithValue("@SubCategoryId", ddlSubCategory.SelectedValue);
@@ -139,10 +139,10 @@ namespace ECommerceBeeBox.Admin
                         cmd.Parameters.AddWithValue("@UpdateImage", updateImage);
 
                         cmd.Parameters.AddWithValue("@ProductId", hfProductId.Value);
-                        cmd.Parameters.AddWithValue("@ProductName", txtProductName.Text);
-                        cmd.Parameters.AddWithValue("@Description", txtProductDescription.Text);
-                        cmd.Parameters.AddWithValue("@Price", txtProductPrice.Text); // Corrected parameter name
-                        cmd.Parameters.AddWithValue("@Quantity", txtProductQuantity.Text);
+                        cmd.Parameters.AddWithValue("@ProductName", txtProductName.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Description", txtProductDescription.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Price", txtProductPrice.Text.Trim()); // Corrected parameter name
+                        cmd.Parameters.AddWithValue("@Quantity", txtProductQuantity.Text.Trim());
                         cmd.Parameters.AddWithValue("@CategoryId", ddlCategory.SelectedValue);
                         cmd.Parameters.AddWithValue("@SubCategoryId", ddlSubCategory.SelectedValue);
                         cmd.Parameters.AddWithValue("@IsActive", cbIsActive.Checked);
@@ -171,10 +171,10 @@ namespace ECommerceBeeBox.Admin
                         cmd.Parameters.AddWithValue("@UpdateImage", updateImage);
 
                         cmd.Parameters.AddWithValue("@ProductId", hfProductId.Value);
-                        cmd.Parameters.AddWithValue("@ProductName", txtProductName.Text);
-                        cmd.Parameters.AddWithValue("@Description", txtProductDescription.Text);
-                        cmd.Parameters.AddWithValue("@Price", txtProductPrice.Text); // Corrected parameter name
-                        cmd.Parameters.AddWithValue("@Quantity", txtProductQuantity.Text);
+                        cmd.Parameters.AddWithValue("@ProductName", txtProductName.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Description", txtProductDescription.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Price", txtProductPrice.Text.Trim()); // Corrected parameter name
+                        cmd.Parameters.AddWithValue("@Quantity", txtProductQuantity.Text.Trim());
                         cmd.Parameters.AddWithValue("@CategoryId", ddlCategory.SelectedValue);
                         cmd.Parameters.AddWithValue("@SubCategoryId", ddlSubCategory.SelectedValue);
                         cmd.Parameters.AddWithValue("@IsActive", cbIsActive.Checked);

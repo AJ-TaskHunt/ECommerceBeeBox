@@ -77,7 +77,7 @@ namespace ECommerceBeeBox.Customer
                             if (txtNewPassword.Text == txtConfirmPassword.Text)
                             {
                                 cmd.Parameters.AddWithValue("@Id", Session["CustomerId"]);
-                                cmd.Parameters.AddWithValue("@NewPassword", txtNewPassword.Text);
+                                cmd.Parameters.AddWithValue("@NewPassword", txtNewPassword.Text.Trim());
 
                                 cmd.ExecuteNonQuery();
 

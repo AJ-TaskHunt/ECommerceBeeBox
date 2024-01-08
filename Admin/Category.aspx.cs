@@ -45,7 +45,7 @@ namespace ECommerceBeeBox.Admin
             cmd = new SqlCommand("sp_CheckCategorySpecificData", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@CategoryName", txtCategoryname.Text);
+            cmd.Parameters.AddWithValue("@CategoryName", txtCategoryname.Text.Trim());
 
             SqlDataReader drCheckCategoryData = cmd.ExecuteReader();
 
@@ -74,7 +74,7 @@ namespace ECommerceBeeBox.Admin
                     cmd = new SqlCommand("sp_InsertCategoryData", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@CategoryName", txtCategoryname.Text);
+                    cmd.Parameters.AddWithValue("@CategoryName", txtCategoryname.Text.Trim());
                     cmd.Parameters.AddWithValue("@IsActive", cbIsActive.Checked);
                     cmd.Parameters.AddWithValue("@ImageUrl", imagepath);
 
@@ -179,7 +179,7 @@ namespace ECommerceBeeBox.Admin
             cmd = new SqlCommand("sp_UpdateCategoryData", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@CategoryName", txtCategoryname.Text);
+            cmd.Parameters.AddWithValue("@CategoryName", txtCategoryname.Text.Trim());
             cmd.Parameters.AddWithValue("@IsActive", cbIsActive.Checked);
             cmd.Parameters.AddWithValue("@CategoryId", hfCategoryId.Value);
 

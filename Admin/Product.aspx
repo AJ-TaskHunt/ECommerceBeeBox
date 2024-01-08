@@ -32,6 +32,14 @@
             }
         }
 
+        //for Limit Character In Input Field
+        function updateCharacterCount() {
+            var ProductDescription = document.getElementById('txtProductDescription');
+            var textLength = document.getElementById('textLimit');
+            var MaxChar = 150;
+
+            textLength.textContent = ProductDescription.value.length + "/" + MaxChar;
+        }
     </script>
 
 </asp:Content>
@@ -69,7 +77,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <asp:TextBox ID="txtProductDescription" runat="server" CssClass="form-control" placeholder="Enter Product Description" TextMode="MultiLine"></asp:TextBox>
+                                    <asp:TextBox ID="txtProductDescription" runat="server" CssClass="form-control" placeholder="Enter Product Description" MaxLength="150" ClientIDMode="Static" oninput="updateCharacterCount()" TextMode="MultiLine"></asp:TextBox>
+                                    <p id="textLimit" style="text-align: right; font-size: smaller">0/150</p>
                                     <asp:RequiredFieldValidator ID="rfvProductDesciption" runat="server" ForeColor="Red" Font-Size="Small" Display="Dynamic" SetFocusOnError="true" ControlToValidate="txtProductDescription" ErrorMessage="Description Required"> </asp:RequiredFieldValidator>
                                 </div>
                             </div>

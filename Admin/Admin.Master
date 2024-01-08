@@ -169,15 +169,17 @@
                             <li class="sidebar-item"><a class="sidebar-link sidebar-link" href="DashBoard.aspx"
                                 aria-expanded="false"><i data-feather="home" class="feather-icon"></i><span
                                     class="hide-menu">Dashboard</span></a></li>
+
                             <li class="list-divider"></li>
                             <li class="nav-small-cap"><span class="hide-menu">Manage Categories</span></li>
                             <li class="sidebar-item"><a class="sidebar-link" href="Category.aspx"
                                 aria-expanded="false"><i data-feather="tag" class="feather-icon"></i><span
-                                    class="hide-menu">Category</span></a>
-                            </li>
+                                    class="hide-menu">Category</span></a></li>
                             <li class="sidebar-item"><a class="sidebar-link sidebar-link" href="SubCategory.aspx"
                                 aria-expanded="false"><i data-feather="message-square" class="feather-icon"></i><span
                                     class="hide-menu">SubCategory</span></a></li>
+
+                           
 
                             <li class="list-divider"></li>
                             <li class="nav-small-cap"><span class="hide-menu">Manage Product</span></li>

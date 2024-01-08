@@ -36,9 +36,9 @@ namespace ECommerceBeeBox.Customer
             using (SqlCommand cmd = new SqlCommand("sp_CustomerLogin", con))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Email", txtEmailOrMobile.Text);
-                cmd.Parameters.AddWithValue("@Mobile", txtEmailOrMobile.Text);
-                cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
+                cmd.Parameters.AddWithValue("@Email", txtEmailOrMobile.Text.Trim());
+                cmd.Parameters.AddWithValue("@Mobile", txtEmailOrMobile.Text.Trim());
+                cmd.Parameters.AddWithValue("@Password", txtPassword.Text.Trim());
 
                 using (SqlDataReader drCheckLogin = cmd.ExecuteReader())
                 {

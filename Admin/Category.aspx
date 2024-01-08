@@ -93,8 +93,6 @@
         </div>
         <!--End Add or Update Category-->
 
-
-
         <!--Display Category-->
         <div class="col-sm-12 col-md-8">
             <div class="card">
@@ -158,4 +156,5 @@
         </div>
         <!--Display Category-->
     </div>
+
 </asp:Content>

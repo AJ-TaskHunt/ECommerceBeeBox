@@ -34,8 +34,8 @@ namespace ECommerceBeeBox.Admin
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string AdminName = txtAdminName.Text;
-            string AdminPassword = txtAdminPassword.Text;
+            string AdminName = txtAdminName.Text.Trim();
+            string AdminPassword = txtAdminPassword.Text.Trim();
 
             cmd = new SqlCommand("sp_AdminLogin", con);
             cmd.CommandType = CommandType.StoredProcedure;

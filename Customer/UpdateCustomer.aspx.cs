@@ -70,11 +70,11 @@ namespace ECommerceBeeBox.Customer
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@Id", Session["CustomerId"]);
-                    cmd.Parameters.AddWithValue("@Name", txtName.Text);
-                    cmd.Parameters.AddWithValue("@Address", txtAddress.Text);
-                    cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                    cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text);
-                    cmd.Parameters.AddWithValue("@PostCode", txtPostCode.Text);
+                    cmd.Parameters.AddWithValue("@Name", txtName.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Address", txtAddress.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text.Trim());
+                    cmd.Parameters.AddWithValue("@PostCode", txtPostCode.Text.Trim());
 
                     if (fuImageProfile.HasFile)
                     {

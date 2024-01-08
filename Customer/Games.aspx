@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <!-- food section -->
+    <!-- Games section -->
 
     <section class="food_section layout_padding">
         <div class="container">
@@ -119,6 +119,6 @@
         </div>
     </section>
 
-    <!-- end food section -->
+    <!-- end games section -->
 
 </asp:Content>

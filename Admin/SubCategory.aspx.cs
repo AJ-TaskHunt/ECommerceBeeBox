@@ -37,7 +37,14 @@ namespace ECommerceBeeBox.Admin
             lblmsg.Visible = false;
             btnUpdateSubCategory.Visible = false;
 
-            btnClear.Text = "Reset";    
+            btnClear.Text = "Reset";
+        }
+
+        public void clear()
+        {
+            txtSubCategoryname.Text = string.Empty;
+            ddlCategoryName.SelectedIndex = 0;
+            cbIsActive.Checked = false;
         }
 
         protected void btnAddSubCategory_Click(object sender, EventArgs e)
@@ -45,7 +52,7 @@ namespace ECommerceBeeBox.Admin
             cmd = new SqlCommand("sp_CheckSubCategorySpecificData",con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@SubCategoryName",ddlSubCategoryName.SelectedItem.Value);
+            cmd.Parameters.AddWithValue("@SubCategoryName",txtSubCategoryname.Text.Trim());
 
             SqlDataReader drCheckSubCategoryName =  cmd.ExecuteReader();
 
@@ -55,8 +62,7 @@ namespace ECommerceBeeBox.Admin
                 lblmsg.Text = "SubCategory Alerdy exists";
                 lblmsg.CssClass = "alert alert-danger";
 
-                ddlSubCategoryName.SelectedIndex = 0;
-
+                clear();
             }
             else
             {
@@ -66,7 +72,7 @@ namespace ECommerceBeeBox.Admin
                 cmd = new SqlCommand("sp_InsertSubCategory", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@SubCategoryName", ddlSubCategoryName.SelectedItem.Value);
+                cmd.Parameters.AddWithValue("@SubCategoryName", txtSubCategoryname.Text.Trim());
                 cmd.Parameters.AddWithValue("@CategoryId", CategoryId);
                 cmd.Parameters.AddWithValue("@IsActive", cbIsActive.Checked);
 
@@ -78,10 +84,7 @@ namespace ECommerceBeeBox.Admin
                     lblmsg.Text = "SubCategory Added successfully!";
                     lblmsg.CssClass = "alert alert-success";
 
-                    ddlCategoryName.SelectedIndex = 0;
-                    ddlSubCategoryName.SelectedIndex = 0;
-
-                    cbIsActive.Checked = false;
+                    clear();
 
                     getSubCategoryData();
                 }
@@ -92,10 +95,7 @@ namespace ECommerceBeeBox.Admin
                     lblmsg.CssClass = "alert alert-danger";
                     lblmsg.Text = "Error";
 
-                    ddlCategoryName.SelectedIndex = 0;
-                    ddlSubCategoryName.SelectedIndex = 0;
-
-                    cbIsActive.Checked = false;
+                    clear();
 
                 }
             }
@@ -105,10 +105,7 @@ namespace ECommerceBeeBox.Admin
 
         protected void btnClear_Click(object sender, EventArgs e)
         {
-            ddlCategoryName.SelectedIndex = 0;
-            ddlSubCategoryName.SelectedIndex = 0;
-
-            cbIsActive.Checked = false;
+            clear();
 
             btnAddSubCategory.Visible = true;
         }
@@ -144,7 +141,7 @@ namespace ECommerceBeeBox.Admin
             cmd = new SqlCommand("sp_UpdateSubCategory", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@SubCategoryName",ddlSubCategoryName.SelectedItem.Value);
+            cmd.Parameters.AddWithValue("@SubCategoryName",txtSubCategoryname.Text.Trim());
             cmd.Parameters.AddWithValue("@CategoryId",ddlCategoryName.SelectedValue);
             cmd.Parameters.AddWithValue("@IsActive",cbIsActive.Checked);
             cmd.Parameters.AddWithValue("@SubCategoryId",hfSubCategoryId.Value);
@@ -159,10 +156,7 @@ namespace ECommerceBeeBox.Admin
 
                 getSubCategoryData();
 
-                ddlCategoryName.SelectedIndex = 0;
-                ddlSubCategoryName.SelectedIndex = 0;
-
-                cbIsActive.Checked = false;
+                clear();
             }
 
             btnUpdateSubCategory.Visible = false;
@@ -184,7 +178,7 @@ namespace ECommerceBeeBox.Admin
                 if(drUpdateSubCategory.Read())
                 {
                     ddlCategoryName.SelectedValue = drUpdateSubCategory["CategoryId"].ToString();
-                    ddlSubCategoryName.SelectedValue = drUpdateSubCategory["SubCategoryName"].ToString();
+                    txtSubCategoryname.Text = drUpdateSubCategory["SubCategoryName"].ToString();
                     cbIsActive.Checked = Convert.ToBoolean(drUpdateSubCategory["IsActive"].ToString());
 
                     hfSubCategoryId.Value=e.CommandArgument.ToString();
