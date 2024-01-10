@@ -30,9 +30,9 @@ $(window).on('load', function () {
 });
 
 // nice select
-$(document).ready(function() {
+$(document).ready(function () {
     $('select').niceSelect();
-  });
+});
 
 ///** google_map js **/
 //function myMap() {
@@ -68,3 +68,37 @@ $(".client_owl-carousel").owlCarousel({
         }
     }
 });
+
+//Quantity changes code
+
+(function ($) {
+    // Wrap your code in a document ready function
+    $(document).ready(function () {
+        // Select each .pro-qty individually to handle multiple instances
+        $('.pro-qty').each(function () {
+            var $productQty = $(this);
+
+            $productQty.on('click', '.qtybtn', function () {
+                var $button = $(this);
+                var $input = $button.siblings('input');
+                var oldValue = parseFloat($input.val());
+
+                if ($button.hasClass('inc')) {
+                    if (oldValue >= 10) {
+                        var newVal = oldValue;
+                    } else {
+                        var newVal = oldValue + 1;
+                    }
+                } else {
+                    if (oldValue > 1) {
+                        var newVal = oldValue - 1;
+                    } else {
+                        var newVal = 1;
+                    }
+                }
+
+                $input.val(newVal);
+            });
+        });
+    });
+})(jQuery);

@@ -567,6 +567,7 @@
     <Content Include="CustomerTemplate\js\custom.js" />
     <Content Include="CustomerTemplate\js\jquery-3.4.1.min.js" />
     <Content Include="Customer\AboutUs.aspx" />
+    <Content Include="Customer\Cart.aspx" />
     <Content Include="Customer\ChangePassword.aspx" />
     <Content Include="Customer\Console.aspx" />
     <Content Include="Customer\ContactUs.aspx" />
@@ -1192,6 +1193,13 @@
     <Compile Include="Customer\AboutUs.aspx.designer.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Customer\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Customer\ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1255,6 +1263,7 @@
     <Compile Include="Customer\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Customer\Model\CartCrud.cs" />
     <Compile Include="Customer\MyProfile.aspx.cs">
       <DependentUpon>MyProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

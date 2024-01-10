@@ -10,12 +10,15 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Web.UI.HtmlControls;
 
+using static ECommerceBeeBox.Customer.Model.CartCrud;
+using ECommerceBeeBox.Customer.Model;
+
 namespace ECommerceBeeBox.Customer
 {
     public partial class Games : System.Web.UI.Page
     {
         string connectionString = WebConfigurationManager.ConnectionStrings["connection"].ConnectionString.ToString();
-
+        CartCrud cartCrud = new CartCrud();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -76,5 +79,56 @@ namespace ECommerceBeeBox.Customer
                 }
             }
         }
+
+        protected void rGames_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (Session["CustomerId"] != null)
+            {
+                bool isCartItemUpdated = false;
+                int sessionId = Convert.ToInt32(Session["CustomerId"]);
+                int productId = Convert.ToInt32(e.CommandArgument);
+                
+                int item = cartCrud.isItemExistsInCart(productId, sessionId);
+
+                if(item == 0)
+                {
+                    //Add new item into Cart
+                    using (SqlConnection con = new SqlConnection(connectionString))
+                    {
+                        con.Open();
+
+                        using (SqlCommand cmd = new SqlCommand("sp_InsertCart", con))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@ProductId", productId);
+                            cmd.Parameters.AddWithValue("@CustomerId", sessionId);
+                            cmd.Parameters.AddWithValue("@Qty",1);
+
+                            int addToCart = cmd.ExecuteNonQuery();
+                            if(addToCart > 0 )
+                            {
+                                ClientScript.RegisterStartupScript(this.GetType(), "alert", "ItemAddedToCart();", true);
+                            }
+                        }
+                    }
+
+                }
+                else
+                {
+                    //Add existing item to cart
+                  isCartItemUpdated = cartCrud.updateCartQuantity(item +1, productId, sessionId);
+
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "ItemAddedToCart();", true);
+
+                }
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "showSweetAlert();", true);
+            }
+        }
+
+        
     }
 }
