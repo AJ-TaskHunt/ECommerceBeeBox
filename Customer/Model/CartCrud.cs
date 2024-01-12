@@ -62,5 +62,32 @@ namespace ECommerceBeeBox.Customer.Model
 
             return isUpdated;
         }
+
+        public int cartCount(int CustomerId)
+        {
+            int itemCount = 0;
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand("select count(*) from Cart where CustomerId=@CustomerId", con))
+                {                    
+                    cmd.Parameters.AddWithValue("@CustomerId", CustomerId);
+
+                    using (SqlDataReader drCheckCartItem = cmd.ExecuteReader())
+                    {
+
+                        if(drCheckCartItem.Read())
+                        {
+                            itemCount = drCheckCartItem.GetInt32(0);
+
+                        }
+                    }
+                }
+            }
+
+            return itemCount;
+        }
     }
 }

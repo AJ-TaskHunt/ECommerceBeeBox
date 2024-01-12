@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using System.Web.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using ECommerceBeeBox.Customer.Model;
 
 namespace ECommerceBeeBox.Customer
 {
@@ -21,6 +22,10 @@ namespace ECommerceBeeBox.Customer
             {
                 MainCategorie();
             }
+
+            CartCrud cart = new CartCrud();
+
+            Session["cartCount"] = cart.cartCount(Convert.ToInt32(Session["CustomerId"]));
 
         }
 

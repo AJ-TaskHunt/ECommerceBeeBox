@@ -1,6 +1,26 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer/Customer.Master" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="ECommerceBeeBox.Customer.Cart" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    <script>
+
+        function CartUpdated() {
+
+            Swal.fire("Cart updated successfully!");
+        }
+
+    </script>
+
+    <style>
+        .swal2-select.nice-select {
+            display: none !important;
+        }
+
+        .nice-select swal2-select open {
+            display: none !important;
+        }
+    </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -41,7 +61,7 @@
                             <asp:Image ID="imgProduct" runat="server" ImageUrl='<%# Eval("ProductImageUrl") %>' Width="60px" Height="60px" />
                         </td>
                         <td>₹<asp:Label ID="lblPrice" runat="server" Text='<%# Eval("Price") %> '></asp:Label>
-                            <asp:HiddenField ID="dfProductId" runat="server" Value='<%# Eval("ProductId") %>' />
+                            <asp:HiddenField ID="hfProductId" runat="server" Value='<%# Eval("pId") %>' />
                             <asp:HiddenField ID="hfQuantity" runat="server" Value='<%# Eval("Qty") %>' />
                             <asp:HiddenField ID="hfProductQty" runat="server" Value='<%# Eval("ProductQty") %>' />
 
@@ -52,16 +72,17 @@
                                 <div class="quantity">
                                     <div class="pro-qty">
                                         <span class="dec qtybtn text-danger"><i class="fa fa-minus-circle"></i></span>
-                                        <asp:TextBox ID="txtQty" runat="server" TextMode="Number" Text='<%# Eval("Quantity") %>' ReadOnly="true"></asp:TextBox>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="*" ForeColor="Red" Display="Dynamic" Font-Size="Small" ValidationExpression="[1-9]*" ControlToValidate="txtQty" SetFocusOnError="true" EnableClientScript="true"></asp:RegularExpressionValidator>
+                                        <asp:TextBox ID="txtQty" runat="server" TextMode="Number" Text='<%# Eval("Quantity") %>'></asp:TextBox>
                                         <span class="inc qtybtn text-success"><i class="fa fa-plus-circle"></i></span>
 
                                     </div>
                                 </div>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="*" ForeColor="Red" Display="Dynamic" Font-Size="Small" ValidationExpression="[1-9]*" ControlToValidate="txtQty" SetFocusOnError="true" EnableClientScript="true"></asp:RegularExpressionValidator>
                             </div>
                         </td>
 
-                        <td>₹<asp:Label ID="lblTotalPrice" runat="server" Text="0"></asp:Label> </td>
+                        <td>₹<asp:Label ID="lblTotalPrice" runat="server" Text="0"></asp:Label>
+                        </td>
 
                         <td>
                             <asp:LinkButton ID="lbtnRemoveItem" runat="server" Text="Remove" CommandName="remove" ToolTip="Remove Item"
@@ -110,7 +131,7 @@
 
             <div class="text-center">
                 <asp:Label ID="lblCartEmpty" Visible="false" runat="server" Text="<h2>Your Cart is empty.. </h2>" CssClass="text-black-50"></asp:Label>
-                
+
             </div>
         </div>
 

@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
     <!-- font awesome style -->
     <link href="../CustomerTemplate/css/font-awesome.min.css" rel="stylesheet" />
- 
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
@@ -162,17 +162,35 @@
                                         <g>
                                         </g>
                                     </svg>
+
+                                    <%if (Session["CustomerId"] != null)
+                                        {
+                                    %>
+
+                                    <span class="badge badge-warning rounded-pill mb-4">
+                                        <% Response.Write(Session["cartCount"]); %>
+                                    </span>
+
+                                    <% }
+                                        else
+                                        {
+                                    %>
+                                    <span class="badge badge-warning rounded-pill mb-4" hidden="hidden">                                        
+                                    </span>
+                                    <%
+                                        }
+                                    %>
                                 </a>
 
                                 <%--  <a href="" class="user_link">
                                     <i class="fa fa-phone" aria-hidden="true"></i>
                                 </a>--%>
 
-                                   <div class="form-inline">
-                                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </button>
-                               </div>
+                                <div class="form-inline">
+                                    <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                                 <%-- <a href="#" class="order_online">Order Online
                                 </a>--%>
                                 <asp:LinkButton ID="lbtnLoginOrLogout" runat="server" CssClass="order_online" CausesValidation="false" OnClick="lbtnLoginOrLogout_Click"></asp:LinkButton>

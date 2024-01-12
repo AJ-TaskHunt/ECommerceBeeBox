@@ -12,6 +12,7 @@ using System.Web.UI.HtmlControls;
 
 using static ECommerceBeeBox.Customer.Model.CartCrud;
 using ECommerceBeeBox.Customer.Model;
+using System.Web.UI.WebControls.WebParts;
 
 namespace ECommerceBeeBox.Customer
 {
@@ -120,8 +121,10 @@ namespace ECommerceBeeBox.Customer
                   isCartItemUpdated = cartCrud.updateCartQuantity(item +1, productId, sessionId);
 
                     ClientScript.RegisterStartupScript(this.GetType(), "alert", "ItemAddedToCart();", true);
-
                 }
+
+                Session["cartCount"] = cartCrud.cartCount(sessionId);
+
             }
             else
             {
