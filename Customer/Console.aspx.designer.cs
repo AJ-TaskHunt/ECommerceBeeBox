@@ -15,13 +15,13 @@ namespace ECommerceBeeBox.Customer
     {
 
         /// <summary>
-        /// rGamesCategories control.
+        /// rConsoleCategories control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rGamesCategories;
+        protected global::System.Web.UI.WebControls.Repeater rConsoleCategories;
 
         /// <summary>
         /// lblmsg control.
@@ -33,12 +33,12 @@ namespace ECommerceBeeBox.Customer
         protected global::System.Web.UI.WebControls.Label lblmsg;
 
         /// <summary>
-        /// rGames control.
+        /// rConsole control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rGames;
+        protected global::System.Web.UI.WebControls.Repeater rConsole;
     }
 }

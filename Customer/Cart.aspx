@@ -10,7 +10,7 @@
         }
 
     </script>
-
+        
     <style>
         .swal2-select.nice-select {
             display: none !important;

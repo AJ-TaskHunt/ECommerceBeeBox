@@ -1,6 +1,68 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer/Customer.Master" AutoEventWireup="true" CodeBehind="Console.aspx.cs" Inherits="ECommerceBeeBox.Customer.Console" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+     <script>
+
+     //alert box
+     function showSweetAlert() {
+         Swal.fire({
+             title: 'To proceed, you must first login',
+             text: 'Click OK to Login',
+             icon: 'info',
+             didOpen: () => {
+                 // Select the element you want to remove and remove it
+                 const niceSelectElement = document.querySelector('.nice-select swal2-select open');
+                 const extraElement = document.querySelector('.nice-select swal2-select');
+
+                 if (niceSelectElement || extraElement) {
+                     niceSelectElement.remove();
+                     extraElement.remove();
+                 }
+             }
+         }).then(function (result) {
+             if (result.isConfirmed) {
+                 window.location.href = 'Login.aspx';
+             }
+         });
+     }
+
+
+     //alert box
+     function CartItemExists() {
+         Swal.fire({
+             text: 'Item already exist',
+             icon: 'info',
+             didOpen: () => {
+                 // Select the element you want to remove and remove it
+                 const niceSelectElement = document.querySelector('.nice-select swal2-select open');
+                 const extraElement = document.querySelector('.nice-select swal2-select');
+
+                 if (niceSelectElement || extraElement) {
+                     niceSelectElement.remove();
+                     extraElement.remove();
+                 }
+             }
+         });
+     }
+
+     //alert box
+     function ItemAddedToCart() {
+         Swal.fire("Your item has been added to your cart successfully!");
+     }
+
+     </script>
+
+ <style>
+     .swal2-select.nice-select {
+         display: none !important;
+     }
+
+     .nice-select swal2-select open {
+         display: none !important;
+     }
+ </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -16,7 +78,7 @@
 
             <ul class="filters_menu">
                 <li class="active" data-filter="*">All</li>
-                <asp:Repeater ID="rGamesCategories" runat="server">
+                <asp:Repeater ID="rConsoleCategories" runat="server">
                     <ItemTemplate>
                         <li data-filter=".<%# Eval("SubCategoryName").ToString().ToLower().Replace(" ", "") %>">
                             <%# Eval("SubCategoryName") %>
@@ -32,7 +94,7 @@
             <!--Display Games Start -->
             <div class="row grid">
                 <div class="filters-content">
-                    <asp:Repeater ID="rGames" runat="server">
+                    <asp:Repeater ID="rConsole" runat="server" OnItemCommand="rConsole_ItemCommand">
                         <ItemTemplate>
                             <div class="col-sm-6 col-lg-4 all <%# Eval("SubCategoryName").ToString().ToLower().Replace(" ", "") %>">
                                 <div class="box">

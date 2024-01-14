@@ -58,11 +58,11 @@ namespace ECommerceBeeBox.Customer
             {
                 con.Open();
 
-                using (SqlCommand cmd = new SqlCommand("sp_DisplayGames", con))
+                using (SqlCommand cmd = new SqlCommand("sp_DisplayProduct", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@games", "Games");
+                    cmd.Parameters.AddWithValue("@CategoryName", "Games");
 
                     using (SqlDataReader drGames = cmd.ExecuteReader())
                     {
@@ -130,8 +130,6 @@ namespace ECommerceBeeBox.Customer
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "showSweetAlert();", true);
             }
-        }
-
-        
+        }        
     }
 }

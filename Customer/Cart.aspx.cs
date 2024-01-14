@@ -44,22 +44,32 @@ namespace ECommerceBeeBox.Customer
         {
             int sessionId = Convert.ToInt32(Session["CustomerId"]);
 
-            cmd = new SqlCommand("sp_DisplayCartItems", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@CustomerId", sessionId);
-
-            SqlDataReader drCartItem = cmd.ExecuteReader();
-
-            if (drCartItem.HasRows)
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
-                rCartItem.DataSource = drCartItem;
-                rCartItem.DataBind();
+                using (SqlCommand cmd = new SqlCommand("sp_DisplayCartItems", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CustomerId", sessionId);
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dtCartItem = new DataTable();
+                        da.Fill(dtCartItem);
+
+                        if (dtCartItem.Rows.Count > 0)
+                        {
+                            rCartItem.DataSource = dtCartItem;
+                            rCartItem.DataBind();
+                        }
+                        else
+                        {
+                            rCartItem.Visible = false;
+                            lblCartEmpty.Visible = true;
+                        }
+                    }
+                }
             }
-            else
-            {
-                rCartItem.Visible = false;
-                lblCartEmpty.Visible = true;
-            }
+
 
             Session["cartCount"] = cart.cartCount(sessionId);
 
@@ -91,7 +101,7 @@ namespace ECommerceBeeBox.Customer
 
             if (e.CommandName == "UpdateCart")
             {
-                //bool isCartUpdated = false;
+                bool isCartUpdated = false;
 
                 for (int item = 0; item < rCartItem.Items.Count; item++)
                 {
@@ -106,32 +116,33 @@ namespace ECommerceBeeBox.Customer
                         int hfPID = Convert.ToInt32(pId.Value);
                         int QtyFromDB = Convert.ToInt32(pQty.Value);
 
-                        // bool isTrue = false;
+                        bool isTrue = false;
 
                         int updatedQuantity = 1;
 
                         if (quantityFromCart > QtyFromDB || quantityFromCart < QtyFromDB)
                         {
                             updatedQuantity = quantityFromCart;
-                            //isTrue = true;
-                            //    isCartUpdated = true;
+                            isTrue = true;
+
                         }
 
-                        cart.updateCartQuantity(updatedQuantity, hfPID, sessionId);
-                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "CartUpdated();", true);
+                        //cart.updateCartQuantity(updatedQuantity, hfPID, sessionId);
+                        //ClientScript.RegisterStartupScript(this.GetType(), "alert", "CartUpdated();", true);
 
-                        CartItems();
+                        
 
-                        //if (isTrue == true)
-                        //{
-                        //    cart.updateCartQuantity(updatedQuantity, hfPID, sessionId);
-                        //    isCartUpdated = true;
-                        //}
+                        if (isTrue)
+                        {
+                            isCartUpdated = cart.updateCartQuantity(updatedQuantity, hfPID, sessionId);
+                            CartItems();
+                            isCartUpdated = true;
+                        }
 
-                        //if (isCartUpdated)
-                        //{
-                        //    ClientScript.RegisterStartupScript(this.GetType(), "alert", "CartUpdated();", true);
-                        //}
+                        if (isCartUpdated)
+                        {
+                            ClientScript.RegisterStartupScript(this.GetType(), "alert", "CartUpdated();", true);
+                        }
                     }
                 }
             }
