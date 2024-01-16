@@ -575,8 +575,11 @@
     <Content Include="Customer\CustomerRegistration.aspx" />
     <Content Include="Customer\Default.aspx" />
     <Content Include="Customer\Games.aspx" />
+    <Content Include="Customer\Invoice.aspx" />
     <Content Include="Customer\Login.aspx" />
+    <Content Include="Customer\MyCart.aspx" />
     <Content Include="Customer\MyProfile.aspx" />
+    <Content Include="Customer\Payment.aspx" />
     <Content Include="Customer\Registration.aspx" />
     <Content Include="Customer\SliderUserControl.ascx" />
     <Content Include="Customer\UpdateCustomer.aspx" />
@@ -1256,6 +1259,13 @@
     <Compile Include="Customer\Games.aspx.designer.cs">
       <DependentUpon>Games.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Customer\Invoice.aspx.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Invoice.aspx.designer.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Customer\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1264,12 +1274,27 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\Model\CartCrud.cs" />
+    <Compile Include="Customer\Model\PaymentOp.cs" />
+    <Compile Include="Customer\MyCart.aspx.cs">
+      <DependentUpon>MyCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\MyCart.aspx.designer.cs">
+      <DependentUpon>MyCart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Customer\MyProfile.aspx.cs">
       <DependentUpon>MyProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Customer\MyProfile.aspx.designer.cs">
       <DependentUpon>MyProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\Payment.aspx.cs">
+      <DependentUpon>Payment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Payment.aspx.designer.cs">
+      <DependentUpon>Payment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\Registration.aspx.cs">
       <DependentUpon>Registration.aspx</DependentUpon>

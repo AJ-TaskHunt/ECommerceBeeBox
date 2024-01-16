@@ -9,6 +9,11 @@
             Swal.fire("Cart updated successfully!");
         }
 
+        function ItemOutOfStocks(productName) {
+
+            Swal.fire("Item <span style='Color:Red;'><u>" + productName + "</u></span> is Out of stocks");
+        }
+
     </script>
         
     <style>

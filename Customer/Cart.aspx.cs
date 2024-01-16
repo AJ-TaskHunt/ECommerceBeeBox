@@ -8,7 +8,6 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Web.Configuration;
 using System.Data;
-using static ECommerceBeeBox.Customer.Model.CartCrud;
 using ECommerceBeeBox.Customer.Model;
 
 namespace ECommerceBeeBox.Customer
@@ -18,7 +17,6 @@ namespace ECommerceBeeBox.Customer
         string connectionString = WebConfigurationManager.ConnectionStrings["connection"].ConnectionString.ToString();
 
         SqlConnection con;
-        SqlCommand cmd;
         CartCrud cart = new CartCrud();
 
         decimal TotalAmount = 0;
@@ -128,9 +126,7 @@ namespace ECommerceBeeBox.Customer
                         }
 
                         //cart.updateCartQuantity(updatedQuantity, hfPID, sessionId);
-                        //ClientScript.RegisterStartupScript(this.GetType(), "alert", "CartUpdated();", true);
-
-                        
+                        //ClientScript.RegisterStartupScript(this.GetType(), "alert", "CartUpdated();", true);                        
 
                         if (isTrue)
                         {
@@ -144,6 +140,52 @@ namespace ECommerceBeeBox.Customer
                             ClientScript.RegisterStartupScript(this.GetType(), "alert", "CartUpdated();", true);
                         }
                     }
+                }
+            }
+
+            if (e.CommandName == "checkout")
+            {
+                string ProductName = string.Empty;
+                bool isTrue = false;
+
+                for (int item = 0; item < rCartItem.Items.Count; item++)
+                {
+                    if (rCartItem.Items[item].ItemType == ListItemType.Item || rCartItem.Items[item].ItemType == ListItemType.AlternatingItem)
+                    {
+
+                        HiddenField pId = rCartItem.Items[item].FindControl("hfProductId") as HiddenField;
+                        HiddenField CartQty = rCartItem.Items[item].FindControl("hfQuantity") as HiddenField;
+                        HiddenField productQty = rCartItem.Items[item].FindControl("hfProductQty") as HiddenField;
+
+                        Label pName = rCartItem.Items[item].FindControl ("lblName") as Label;  
+
+                        int hfPID = Convert.ToInt32(pId.Value);
+                        int quantityFromCart = Convert.ToInt32(CartQty.Value);
+                        int QtyFromDB = Convert.ToInt32(productQty.Value);
+
+                        if (QtyFromDB > quantityFromCart || QtyFromDB > 2)
+                        {
+                            isTrue = true;
+                            
+                        }
+                        else
+                        {
+                            isTrue= false;
+                            ProductName  = pName.Text.ToString();
+                            break;
+                            
+                        }                        
+                    }
+                }
+
+                if(isTrue)
+                {
+                    Response.Redirect("Payment.aspx");
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "ItemOutOfStocks('"+ ProductName +"');", true);
+
                 }
             }
         }

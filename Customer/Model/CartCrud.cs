@@ -89,5 +89,15 @@ namespace ECommerceBeeBox.Customer.Model
 
             return itemCount;
         }
+
+
+        public static string GetUniqueId()
+        {
+            Guid guid = Guid.NewGuid();
+
+            string uniqueId = guid.ToString();
+
+            return uniqueId;
+        }
     }
 }
