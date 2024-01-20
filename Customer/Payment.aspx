@@ -148,7 +148,7 @@
                                             </asp:RegularExpressionValidator>
                                             <div class="input-group">
                                                 <asp:TextBox ID="txtCardNo" runat="server" CssClass="form-control" placeholder="Valid card number"
-                                                    TextMode="Number"></asp:TextBox>
+                                                    TextMode="Number" MaxLength="16"></asp:TextBox>
                                                 <div class="input-group-append">
                                                     <span class="input-group-text text-muted">
                                                         <i class="fa fa-cc-visa mx-1"></i>

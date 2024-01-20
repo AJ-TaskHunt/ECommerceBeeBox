@@ -7,21 +7,23 @@ using System.Data.SqlClient;
 using System.Web.Configuration;
 using System.Data;
 
+using ECommerceBeeBox.Customer.Model;
+
 namespace ECommerceBeeBox.Customer.Model
 {
     public class PaymentOp
     {
         //string connectionString = WebConfigurationManager.ConnectionStrings["connection"].ConnectionString.ToString();
-        static SqlCommand cmd;
-        public static void UpdateQuantity(int productId, int qty, SqlTransaction transaction, SqlConnection sqlConnection)
+         SqlCommand command;
+        public void UpdateQuantity(int productId, int qty, SqlConnection sqlConnection)
         {
             int DBQuantity;
 
-            cmd = new SqlCommand("select * from Product where ProductId=@ProductId", sqlConnection, transaction);
+            command = new SqlCommand("select * from Product where ProductId=@ProductId", sqlConnection);
 
-            cmd.Parameters.AddWithValue("@ProductId", productId);
+            command.Parameters.AddWithValue("@ProductId", productId);
 
-            SqlDataReader drQty = cmd.ExecuteReader();
+            SqlDataReader drQty = command.ExecuteReader();
 
             while (drQty.Read())
             {
@@ -31,11 +33,11 @@ namespace ECommerceBeeBox.Customer.Model
                 {
                     DBQuantity = DBQuantity - qty;
 
-                    cmd = new SqlCommand("update Product set Quantity=@Quantity where ProductId=@ProductId", sqlConnection, transaction);
-                    cmd.Parameters.AddWithValue("@ProductId", productId);
-                    cmd.Parameters.AddWithValue("@Quantity", DBQuantity);
+                    command = new SqlCommand("update Product set Quantity=@Quantity where ProductId=@ProductId", sqlConnection);
+                    command.Parameters.AddWithValue("@ProductId", productId);
+                    command.Parameters.AddWithValue("@Quantity", DBQuantity);
 
-                    cmd.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
                 }
             }
 
@@ -43,15 +45,32 @@ namespace ECommerceBeeBox.Customer.Model
 
         }
 
-        public static void RemoveProductFromCart(int productId, int sessionId, SqlTransaction transaction, SqlConnection sqlConnection)
+        public void RemoveProductFromCart(int productId, int sessionId, SqlConnection sqlConnection)
         {
-            cmd = new SqlCommand("sp_DeleteCartItem", sqlConnection, transaction);
+            command = new SqlCommand("sp_DeleteCartItem", sqlConnection);
 
-            cmd.Parameters.AddWithValue("@ProductId", productId);
-            cmd.Parameters.AddWithValue("@CustomerId", sessionId);
+            command.Parameters.AddWithValue("@ProductId", productId);
+            command.Parameters.AddWithValue("@CustomerId", sessionId);
 
-            cmd.ExecuteNonQuery();
+            command.ExecuteNonQuery();
 
+        }
+
+        public void OrderData(int productId, int Quantity, int sessionId, int paymentId, SqlConnection sqlConnection)
+        {
+
+            command = new SqlCommand("sp_InsertOrderData", sqlConnection);
+            command.CommandType = CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue("@OrderNo", CartCrud.GetUniqueId());
+            command.Parameters.AddWithValue("@PaymentId", paymentId);
+            command.Parameters.AddWithValue("@CustomerId",sessionId);
+            command.Parameters.AddWithValue("@ProductId",productId);
+            command.Parameters.AddWithValue("@Quantity",Quantity);
+            command.Parameters.AddWithValue("@Status", "Pending");
+
+            command.ExecuteNonQuery();
+            
         }
     }
 }
