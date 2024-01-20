@@ -39,9 +39,9 @@ namespace ECommerceBeeBox.Customer.Model
 
                     command.ExecuteNonQuery();
                 }
+                drQty.Close();
             }
 
-            drQty.Close();
 
         }
 

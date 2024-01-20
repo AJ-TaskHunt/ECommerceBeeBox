@@ -18,7 +18,8 @@ namespace ECommerceBeeBox.Customer
         string connectionString = WebConfigurationManager.ConnectionStrings["connection"].ConnectionString.ToString();
 
         SqlCommand cmd;
-        SqlDataReader dr;
+        SqlDataReader dr, dr2;
+        SqlConnection con;
 
         PaymentOp paymentTransction = new PaymentOp();
 
@@ -26,6 +27,9 @@ namespace ECommerceBeeBox.Customer
         long cardNo = 0, cvvNo = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
+            con = new SqlConnection(connectionString);
+            con.Open();
+
             if (!IsPostBack)
             {
                 if (Session["CustomerId"] == null)
@@ -46,35 +50,31 @@ namespace ECommerceBeeBox.Customer
             int year = Convert.ToInt32(txtExpYear.Text.Trim());
             //cardNo = Convert.ToInt64(string.Format("************{0}", Convert.ToInt64(txtCardNo.Text.Trim().Substring(12, 4))));
 
-            using (SqlConnection con = new SqlConnection(connectionString))
+            if (long.TryParse(txtCardNo.Text.Trim().Substring(12, 4), out cardNo))
             {
-                con.Open();
+                string formattedCardNo = string.Format("************{0}", cardNo);
 
-                if (long.TryParse(txtCardNo.Text.Trim().Substring(12, 4), out cardNo))
+                if (month >= 1 && month <= 12)
                 {
-                    string formattedCardNo = string.Format("************{0}", cardNo);
+                    ExpiryDate = month + "/" + year;
 
-                    if (month >= 1 && month <= 12)
+                    if (Session["CustomerId"] != null)
                     {
-                        ExpiryDate = month + "/" + year;
-
-                        if (Session["CustomerId"] != null)
-                        {
-                            OrderPayment(name, cardNo, ExpiryDate, cvvNo, Address, PaymentMode);
-                        }
-                        else
-                        {
-                            Response.Redirect("Login.aspx");
-                        }
+                        OrderPayment(name, cardNo, ExpiryDate, cvvNo, Address, PaymentMode);
                     }
                     else
                     {
-                        lblMsg.Visible = true;
-                        lblMsg.Text = "Invalid Moths or Year";
-                        lblMsg.CssClass = "alert alert-danger";
+                        Response.Redirect("Login.aspx");
                     }
                 }
+                else
+                {
+                    lblMsg.Visible = true;
+                    lblMsg.Text = "Invalid Moths or Year";
+                    lblMsg.CssClass = "alert alert-danger";
+                }
             }
+
         }
 
         protected void lbCodSubmit_Click(object sender, EventArgs e)
@@ -96,71 +96,63 @@ namespace ECommerceBeeBox.Customer
         {
             int paymentId, productId, Quantity;
 
-            using (SqlConnection con = new SqlConnection(connectionString))
+            cmd = new SqlCommand("sp_InsertPaymentData", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Name", Name);
+            cmd.Parameters.AddWithValue("@CardNo", CardNo);
+            cmd.Parameters.AddWithValue("@ExpiryDate", ExpiryDate);
+            cmd.Parameters.AddWithValue("@Cvv", Cvv);
+            cmd.Parameters.AddWithValue("@Address", Address);
+            cmd.Parameters.AddWithValue("@PaymentMode", PaymentMode);
+            cmd.Parameters.Add("@InsertedId", SqlDbType.Int);
+            cmd.Parameters["@InsertedId"].Direction = ParameterDirection.Output;
+
+            try
             {
-                con.Open();
-                cmd = new SqlCommand("sp_InsertPaymentData", con);
+                cmd.ExecuteNonQuery();
+                paymentId = Convert.ToInt32(cmd.Parameters["@InsertedId"].Value);                
+
+                cmd = new SqlCommand("sp_DisplayCartItems", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CustomerId", Session["CustomerId"]);
+                dr = cmd.ExecuteReader();
 
-                cmd.Parameters.AddWithValue("@Name", Name);
-                cmd.Parameters.AddWithValue("@CardNo", CardNo);
-                cmd.Parameters.AddWithValue("@ExpiryDate", ExpiryDate);
-                cmd.Parameters.AddWithValue("@Cvv", Cvv);
-                cmd.Parameters.AddWithValue("@Address", Address);
-                cmd.Parameters.AddWithValue("@PaymentMode", PaymentMode);
-                cmd.Parameters.Add("@InsertedId", SqlDbType.Int);
-                cmd.Parameters["@InsertedId"].Direction = ParameterDirection.Output;
-
-                try
+                while (dr.Read())
                 {
-                    cmd.ExecuteNonQuery();
-                    paymentId = Convert.ToInt32(cmd.Parameters["@InsertedId"].Value);
+                    productId = (int)dr["ProductId"];
+                    Quantity = (int)dr["Quantity"];
 
-                    if (dr != null && !dr.IsClosed)
-                        dr.Close();
+                    // ViewState["productId"] = productId;
+                    //ViewState["Quantity"] = Quantity;                       
 
-                    cmd = new SqlCommand("sp_DisplayCartItems", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@CustomerId", Session["CustomerId"]);
-                    dr = cmd.ExecuteReader();
+                    //using (SqlConnection conUpdate = new SqlConnection(connectionString))
+                    //{
+                    //update Quantity to Product Table
+                    UpdateQuantity(productId, Quantity);
+                    //update Quantity to Product Table End
 
-                    while (dr.Read())
-                    {
-                        productId = (int)dr["ProductId"];
-                        Quantity = (int)dr["Quantity"];
+                    //remove product cart table
+                    RemoveProductFromCart(productId, Convert.ToInt32(Session["CustomerId"]), con);
+                    //remove product cart table End
 
-                        // ViewState["productId"] = productId;
-                        //ViewState["Quantity"] = Quantity;                       
-
-                        //using (SqlConnection conUpdate = new SqlConnection(connectionString))
-                        //{
-                            //update Quantity to Product Table
-                            paymentTransction.UpdateQuantity(productId, Quantity, con);
-                            //update Quantity to Product Table End
-
-                            //remove product cart table
-                            paymentTransction.RemoveProductFromCart(productId, Convert.ToInt32(Session["CustomerId"]), con);
-                            //remove product cart table End
-
-                            paymentTransction.OrderData(productId, Quantity, (int)Session["CustometId"], paymentId, con);
-                        //}
-                    }
-                    dr.Close();
-
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "Ordered('" + paymentId + "');", true);
-
-                    //Response.AddHeader("REFRESH", "1;URL=Invoice.aspx?pid" + paymentId);
-
+                    OrderData(productId, Quantity, Convert.ToInt32(Session["CustomerId"]), paymentId, con);
+                    //}
                 }
-                catch (Exception e)
-                {
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "ExceptionError('" + e.Message + "');", true);
-                }
-                finally
-                {
-                    con.Close();
-                }
+                dr.Close();
+
+                //Response.AddHeader("REFRESH", "1;URL=Invoice.aspx?pid" + paymentId);
+
             }
+            catch (Exception e)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "ExceptionError('" + e.Message + "');", true);
+            }
+            finally
+            {
+                con.Close();
+            }
+
         }
 
 
@@ -209,5 +201,80 @@ namespace ECommerceBeeBox.Customer
         //    }
         //}
 
+        public void UpdateQuantity(int productId, int qty)
+        {
+            int DBQuantity;
+
+            using (SqlConnection conProductUpdate = new SqlConnection(connectionString))
+            {
+                conProductUpdate.Open();
+                SqlCommand cmdUpdateProduct = new SqlCommand("select * from Product where ProductId=@ProductId", conProductUpdate);
+
+                cmdUpdateProduct.Parameters.AddWithValue("@ProductId", productId);
+
+                try
+                {
+                    dr2 = cmdUpdateProduct.ExecuteReader();
+
+                    while (dr2.Read())
+                    {
+                        DBQuantity = (int)dr2["Quantity"];
+
+                        if (DBQuantity > qty && DBQuantity > 2)
+                        {
+                            DBQuantity = DBQuantity - qty;
+
+                            cmdUpdateProduct = new SqlCommand("update Product set Quantity=@Quantity where ProductId=@ProductId", conProductUpdate);
+                            cmdUpdateProduct.Parameters.AddWithValue("@ProductId", productId);
+                            cmdUpdateProduct.Parameters.AddWithValue("@Quantity", DBQuantity);
+
+                            cmdUpdateProduct.ExecuteNonQuery();
+                        }
+                    }
+                    dr2.Close();
+                }
+                catch (Exception)
+                {
+
+                }
+                finally
+                {
+                    conProductUpdate.Close();
+                }
+
+            }
+
+        }
+
+        public void RemoveProductFromCart(int productId, int sessionId, SqlConnection sqlConnection)
+        {
+            SqlCommand cmdRemoveProduct = new SqlCommand("sp_DeleteCartItem", sqlConnection);
+            cmdRemoveProduct.CommandType = CommandType.StoredProcedure;
+
+            cmdRemoveProduct.Parameters.AddWithValue("@ProductId", productId);
+            cmdRemoveProduct.Parameters.AddWithValue("@CustomerId", sessionId);
+
+            cmdRemoveProduct.ExecuteNonQuery();
+
+        }
+
+        public void OrderData(int productId, int Quantity, int sessionId, int paymentId, SqlConnection sqlConnection)
+        {
+
+            SqlCommand cmdOrderData = new SqlCommand("sp_InsertOrderData", sqlConnection);
+            cmdOrderData.CommandType = CommandType.StoredProcedure;
+
+            cmdOrderData.Parameters.AddWithValue("@OrderNo", CartCrud.GetUniqueId());
+            cmdOrderData.Parameters.AddWithValue("@PaymentId", paymentId);
+            cmdOrderData.Parameters.AddWithValue("@CustomerId", sessionId);
+            cmdOrderData.Parameters.AddWithValue("@ProductId", productId);
+            cmdOrderData.Parameters.AddWithValue("@Quantity", Quantity);
+            cmdOrderData.Parameters.AddWithValue("@Status", "Pending");
+
+            cmdOrderData.ExecuteNonQuery();
+
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "Ordered('" + paymentId + "');", true);
+
+        }
     }
 }
