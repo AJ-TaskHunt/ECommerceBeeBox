@@ -80,7 +80,7 @@
                 }
             }).then(function (result) {
                 if (result.isConfirmed) {
-                    window.location.href = 'Invoice.aspx?pid' + paymentId ;
+                    window.location.href = 'Invoice.aspx?pid=' + paymentId ;
                 }
             });
         }

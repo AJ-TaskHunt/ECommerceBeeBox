@@ -82,6 +82,9 @@ namespace ECommerceBeeBox.Customer
             Address = txtCODAddress.Text.Trim();
             PaymentMode = "Cash On Delivery";
 
+            name = "None";
+            ExpiryDate = "None";            
+
             if (Session["CustomerId"] != null)
             {
                 OrderPayment(name, cardNo, ExpiryDate, cvvNo, Address, PaymentMode);
@@ -141,7 +144,7 @@ namespace ECommerceBeeBox.Customer
                 }
                 dr.Close();
 
-                //Response.AddHeader("REFRESH", "1;URL=Invoice.aspx?pid" + paymentId);
+                //Response.AddHeader("REFRESH", "1;URL=Invoice.aspx?pid=" + paymentId);
 
             }
             catch (Exception e)

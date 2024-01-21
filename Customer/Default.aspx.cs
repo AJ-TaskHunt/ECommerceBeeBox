@@ -21,11 +21,7 @@ namespace ECommerceBeeBox.Customer
             if(!IsPostBack)
             {
                 MainCategorie();
-            }
-
-            CartCrud cart = new CartCrud();
-
-            Session["cartCount"] = cart.cartCount(Convert.ToInt32(Session["CustomerId"]));
+            }           
 
         }
 

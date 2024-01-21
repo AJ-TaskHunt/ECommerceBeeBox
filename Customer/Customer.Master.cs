@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ECommerceBeeBox.Customer.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -40,6 +41,10 @@ namespace ECommerceBeeBox.Customer
             {
                 lbtnLoginOrLogout.Text = "Logout";
             }
+
+            CartCrud cart = new CartCrud();
+
+            Session["cartCount"] = cart.cartCount(Convert.ToInt32(Session["CustomerId"]));
 
         }
 

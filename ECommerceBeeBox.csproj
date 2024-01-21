@@ -47,6 +47,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Users\TASK MASTER\OneDrive\.net\AjaxControlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=4.1.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -584,6 +588,7 @@
     <Content Include="Customer\SliderUserControl.ascx" />
     <Content Include="Customer\UpdateCustomer.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="itextsharp.dll" />
     <Content Include="LoginForm.aspx" />
     <Content Include="SellerTemplate\assets\extra-libs\c3\c3.min.css" />
     <Content Include="SellerTemplate\assets\extra-libs\c3\c3.min.js" />
