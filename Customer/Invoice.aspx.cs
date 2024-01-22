@@ -63,7 +63,7 @@ namespace ECommerceBeeBox.Customer
             cmd.Parameters.AddWithValue("@CustomerId", CustomerId);
 
             sda = new SqlDataAdapter(cmd);
-            dt = new DataTable();
+            dt = new DataTable();   
             sda.Fill(dt);
 
             if (dt.Rows.Count > 0)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace ECommerceBeeBox.Customer
             {
                 GetCustomerProfile();
                 GetCustomerData();
+                GetPurchasedHistory();
             }
         }
 
@@ -39,7 +41,7 @@ namespace ECommerceBeeBox.Customer
             using (SqlCommand cmd = new SqlCommand("select * from Customer where CustomerId='" + Session["CustomerId"] + "' and IsActive=1 ", con))
             {
                 using (SqlDataReader drProfile = cmd.ExecuteReader())
-                {                  
+                {
                     if (drProfile.Read())
                     {
                         imgProfile.ImageUrl = drProfile["ImageUrl"].ToString();
@@ -69,6 +71,44 @@ namespace ECommerceBeeBox.Customer
                     rCustomerBasicInfo.DataBind();
                 }
             }
+        }
+
+        public void GetPurchasedHistory()
+        {
+            int sessionId = Convert.ToInt32(Session["CustomerId"]);
+            int srno = 1;
+
+            using (SqlCommand cmd = new SqlCommand("sp_OrderHistory", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CustomerId", sessionId);
+
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    DataTable dtOrderHistory = new DataTable();
+                    da.Fill(dtOrderHistory);
+                    dtOrderHistory.Columns.Add("#", typeof(Int32));
+                    if (dtOrderHistory.Rows.Count > 0)
+                    {
+                        foreach (DataRow loop in dtOrderHistory.Rows)
+                        {
+                            loop["#"] = srno;
+                            srno++;
+                        }
+                    }
+                    if (dtOrderHistory.Rows.Count > 0)
+                    {
+                        rPurchasedHistory.DataSource = dtOrderHistory;
+                        rPurchasedHistory.DataBind();
+                    }
+                    else
+                    {
+                        rPurchasedHistory.Visible = false;
+                        lblOrder.Visible = true;
+                    }
+                }
+            }
+
         }
 
         protected void lbtnEditDetails_Click(object sender, EventArgs e)
@@ -103,6 +143,43 @@ namespace ECommerceBeeBox.Customer
         protected void lbtnUpdatePassword_Click(object sender, EventArgs e)
         {
             Response.Redirect("ChangePassword.aspx");
+        }
+
+        protected void rPurchasedHistory_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            int sessionId = Convert.ToInt32(Session["CustomerId"]);
+            double TotalAmount = 0;
+
+
+            HiddenField paymentId = e.Item.FindControl("hfPaymentId") as HiddenField;
+            Repeater repeaterOrders = e.Item.FindControl("rOrderDetails") as Repeater;
+
+            using (SqlCommand cmd = new SqlCommand("sp_Invoice", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CustomerId", sessionId);
+                cmd.Parameters.AddWithValue("@PaymentId", Convert.ToInt32(paymentId.Value));
+
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    DataTable dtOrder = new DataTable();
+                    da.Fill(dtOrder);
+                    if (dtOrder.Rows.Count > 0)
+                    {
+                        foreach (DataRow loop in dtOrder.Rows)
+                        {
+                            TotalAmount += Convert.ToDouble(loop["TotalAmount"]);
+                        }
+                    }
+
+                    DataRow dataRow = dtOrder.NewRow();
+                    dataRow["TotalAmount"] = TotalAmount;
+                    dtOrder.Rows.Add(dataRow);
+
+                    repeaterOrders.DataSource = dtOrder;
+                    repeaterOrders.DataBind();
+                }
+            }
         }
     }
 }

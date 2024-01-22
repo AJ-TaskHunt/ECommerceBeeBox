@@ -182,8 +182,82 @@
                                             <%--Order Details--%>
                                             <div class="tab-pane fade" id="connectedServices" role="tabpanel"
                                                 aria-labelledby="ConnectedServices-tab">
+                                                <asp:Repeater ID="rPurchasedHistory" runat="server" OnItemDataBound="rPurchasedHistory_ItemDataBound">
+                                                    <ItemTemplate>
+                                                        <div class="container">
+                                                            <div class="row pt-1 pb-1" style="background-color: lightgray;">
+                                                                <div class="col-4">
+                                                                    <span class="badge badge-pill badge-danger text-white">
+                                                                        <%# Eval("#") %>
+                                                                    </span>
+                                                                    Payment Mode: 
+                                    <%# Eval("PaymentMode").ToString() == "Card" ? Eval("PaymentMode").ToString().ToUpper() : "Cash On Delivery" %>
+                                                                </div>
+                                                                <div class="col-6 ">
+                                                                    <%# Convert.ToInt64(Eval("CardNo")) == 0 ? "" : "Card No:"+ "************" + Convert.ToInt64( Eval("CardNo").ToString().Substring(Math.Max(0, Eval("CardNo").ToString().Length - 4))) %>
+                                                                </div>
+                                                                <div class="col-2">
+                                                                    <a href="Invoice.aspx?pid=<%# Eval("PaymentId") %>"><i class="fa fa-download mr-2"></i>Invoice</a>
+                                                                </div>
+                                                            </div>
 
-                                                <h3>My Order</h3>
+                                                            <asp:HiddenField ID="hfPaymentId" runat="server" Value='<%# Eval("PaymentId") %>' />
+
+                                                            <asp:Repeater ID="rOrderDetails" runat="server">
+                                                                <HeaderTemplate>
+                                                                    <table class="table data-table-export table-responsive-sm table-bordered table-hover">
+                                                                        <thead>
+                                                                            <tr class="bg-dark text-white">
+                                                                                <th>Product Name</th>
+                                                                                <th>Price</th>
+                                                                                <th>Quantity</th>
+                                                                                <th>OrderId</th>
+                                                                                <th>Total Price</th>
+                                                                                <th>Status</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                </HeaderTemplate>
+                                                                <ItemTemplate>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <asp:Label ID="lblProductName" runat="server" Text='<%# Eval("ProductName") %>'></asp:Label>
+                                                                            </td>
+                                                                            <td>
+                                                                                <asp:Label ID="lblPrice" runat="server" Text=' <%# string.IsNullOrEmpty( Eval("Price").ToString() ) ? "" : "₹" + Eval("Price") %>'></asp:Label>
+                                                                            </td>
+                                                                            <td>
+                                                                                <asp:Label ID="lblQty" runat="server" Text='<%# Eval("Quantity") %>'></asp:Label>
+                                                                            </td>
+                                                                            <td>
+                                                                                <asp:Label ID="lblOrderId" runat="server" Text='<%# Eval("OrderNo") %>'></asp:Label>
+                                                                            </td>
+                                                                            <td>
+                                                                                <asp:Label ID="lblTotal" runat="server" Text='<%# "₹" + Eval("TotalAmount") %>'></asp:Label>
+                                                                            </td>
+                                                                            <td>
+                                                                                <asp:Label ID="lblStatus" runat="server" Text='<%# Eval("Status") %>'></asp:Label>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    <tr>
+                                                                        <td colspan="3"></td>
+                                                                        <td>aaa</td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                 </table>
+                                                                </FooterTemplate>
+                                                            </asp:Repeater>
+
+                                                        </div>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+
+                                                <div class="text-center">
+                                                    <asp:Label ID="lblOrder" runat="server" Visible="false" Text="No Order" CssClass="text-black-50"></asp:Label>
+                                                </div>
 
                                             </div>
                                             <%--Order Details End--%>
