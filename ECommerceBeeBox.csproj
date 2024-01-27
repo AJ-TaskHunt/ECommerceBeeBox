@@ -529,7 +529,9 @@
     <Content Include="Admin\Category.aspx" />
     <Content Include="Admin\Dashboard.aspx" />
     <Content Include="Admin\Default.aspx" />
+    <Content Include="Admin\Feedback.aspx" />
     <Content Include="Admin\ManageCustomer.aspx" />
+    <Content Include="Admin\OrderStatus.aspx" />
     <Content Include="Admin\Product.aspx" />
     <Content Include="Admin\SubCategory.aspx" />
     <Content Include="Assets\css\CustomerRegistration.css" />
@@ -571,6 +573,7 @@
     <Content Include="CustomerTemplate\js\custom.js" />
     <Content Include="CustomerTemplate\js\jquery-3.4.1.min.js" />
     <Content Include="Customer\AboutUs.aspx" />
+    <Content Include="Customer\CancelOrder.aspx" />
     <Content Include="Customer\Cart.aspx" />
     <Content Include="Customer\ChangePassword.aspx" />
     <Content Include="Customer\Console.aspx" />
@@ -1165,6 +1168,13 @@
     <Compile Include="Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Feedback.aspx.cs">
+      <DependentUpon>Feedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Feedback.aspx.designer.cs">
+      <DependentUpon>Feedback.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ManageCustomer.aspx.cs">
       <DependentUpon>ManageCustomer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1173,6 +1183,13 @@
       <DependentUpon>ManageCustomer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Model\DashboardCount.cs" />
+    <Compile Include="Admin\OrderStatus.aspx.cs">
+      <DependentUpon>OrderStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\OrderStatus.aspx.designer.cs">
+      <DependentUpon>OrderStatus.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Product.aspx.cs">
       <DependentUpon>Product.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1200,6 +1217,13 @@
     </Compile>
     <Compile Include="Customer\AboutUs.aspx.designer.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\CancelOrder.aspx.cs">
+      <DependentUpon>CancelOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CancelOrder.aspx.designer.cs">
+      <DependentUpon>CancelOrder.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\Cart.aspx.cs">
       <DependentUpon>Cart.aspx</DependentUpon>

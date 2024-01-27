@@ -150,7 +150,6 @@ namespace ECommerceBeeBox.Customer
             int sessionId = Convert.ToInt32(Session["CustomerId"]);
             double TotalAmount = 0;
 
-
             HiddenField paymentId = e.Item.FindControl("hfPaymentId") as HiddenField;
             Repeater repeaterOrders = e.Item.FindControl("rOrderDetails") as Repeater;
 
@@ -172,13 +171,22 @@ namespace ECommerceBeeBox.Customer
                         }
                     }
 
-                    DataRow dataRow = dtOrder.NewRow();
-                    dataRow["TotalAmount"] = TotalAmount;
-                    dtOrder.Rows.Add(dataRow);
+                    //DataRow dataRow = dtOrder.NewRow();
+                    //dataRow["TotalAmount"] = TotalAmount;
+                    //dtOrder.Rows.Add(dataRow);
+
+                    Session["Prices"] = TotalAmount;
 
                     repeaterOrders.DataSource = dtOrder;
                     repeaterOrders.DataBind();
                 }
+            }
+        }
+        protected void rOrderDetails_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "cancel")
+            {
+                Response.Redirect("CancelOrder.aspx?id=" + e.CommandArgument);
             }
         }
     }

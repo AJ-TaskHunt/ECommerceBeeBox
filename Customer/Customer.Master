@@ -15,7 +15,7 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <link rel="shortcut icon" href="../CustomerTemplate/images/favicon.png" type="">
+    <link rel="shortcut icon" href="../CustomerTemplate/images/bee-box-high-resolution-logo-black-transparent.png" type="">
 
     <title>BeeBox</title>
 
@@ -74,7 +74,7 @@
             <header class="header_section">
                 <div class="container">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="Default.aspx">
                             <span>BeeBox</span>
                         </a>
 
@@ -98,7 +98,7 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about.html">Contact</a>
+                                    <a class="nav-link" href="ContactUs.aspx">Contact</a>
                                 </li>
 
                                 <li class="nav-item">

@@ -163,7 +163,7 @@ namespace ECommerceBeeBox.Customer
                         int quantityFromCart = Convert.ToInt32(CartQty.Value);
                         int QtyFromDB = Convert.ToInt32(productQty.Value);
 
-                        if (QtyFromDB > quantityFromCart || QtyFromDB > 2)
+                        if (QtyFromDB > quantityFromCart && QtyFromDB > 2)
                         {
                             isTrue = true;
                             
