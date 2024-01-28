@@ -116,6 +116,10 @@
     <Content Include="AdminTemplate\assets\extra-libs\taskboard\js\lobilist.js" />
     <Content Include="AdminTemplate\assets\extra-libs\taskboard\js\lobilist.min.js" />
     <Content Include="AdminTemplate\assets\extra-libs\taskboard\js\task-init.js" />
+    <Content Include="AdminTemplate\assets\icon\icofont\css\icofont.css" />
+    <Content Include="AdminTemplate\assets\icon\icofont\fonts\icofont.svg" />
+    <Content Include="AdminTemplate\assets\icon\themify-icons\fonts\themify.svg" />
+    <Content Include="AdminTemplate\assets\icon\themify-icons\themify-icons.css" />
     <Content Include="AdminTemplate\assets\images\big\1.jpg" />
     <Content Include="AdminTemplate\assets\images\big\3.jpg" />
     <Content Include="AdminTemplate\assets\images\big\5.jpg" />
@@ -415,6 +419,7 @@
     <Content Include="AdminTemplate\assets\libs\raphael\license.txt" />
     <Content Include="AdminTemplate\assets\libs\raphael\raphael.min.js" />
     <Content Include="AdminTemplate\assets\libs\raphael\raphael.no-deps.min.js" />
+    <Content Include="AdminTemplate\assets\style.css" />
     <Content Include="AdminTemplate\DataTables\css\dataTables.bootstrap4.min.css" />
     <Content Include="AdminTemplate\DataTables\css\icon-font.min.css" />
     <Content Include="AdminTemplate\DataTables\css\jquery.dataTables.min.css" />
@@ -529,10 +534,13 @@
     <Content Include="Admin\Category.aspx" />
     <Content Include="Admin\Dashboard.aspx" />
     <Content Include="Admin\Default.aspx" />
+    <Content Include="Admin\Demo.aspx" />
     <Content Include="Admin\Feedback.aspx" />
     <Content Include="Admin\ManageCustomer.aspx" />
+    <Content Include="Admin\OrderCancelStatus.aspx" />
     <Content Include="Admin\OrderStatus.aspx" />
     <Content Include="Admin\Product.aspx" />
+    <Content Include="Admin\Report.aspx" />
     <Content Include="Admin\SubCategory.aspx" />
     <Content Include="Assets\css\CustomerRegistration.css" />
     <Content Include="Assets\css\js\CustomerRegistration.js" />
@@ -1168,6 +1176,13 @@
     <Compile Include="Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Demo.aspx.cs">
+      <DependentUpon>Demo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Demo.aspx.designer.cs">
+      <DependentUpon>Demo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Feedback.aspx.cs">
       <DependentUpon>Feedback.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1183,6 +1198,13 @@
       <DependentUpon>ManageCustomer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Model\DashboardCount.cs" />
+    <Compile Include="Admin\OrderCancelStatus.aspx.cs">
+      <DependentUpon>OrderCancelStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\OrderCancelStatus.aspx.designer.cs">
+      <DependentUpon>OrderCancelStatus.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\OrderStatus.aspx.cs">
       <DependentUpon>OrderStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1196,6 +1218,13 @@
     </Compile>
     <Compile Include="Admin\Product.aspx.designer.cs">
       <DependentUpon>Product.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Report.aspx.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Report.aspx.designer.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\SubCategory.aspx.cs">
       <DependentUpon>SubCategory.aspx</DependentUpon>
@@ -1650,6 +1679,12 @@
     <Content Include="CustomerTemplate\fonts\fontawesome-webfont.woff" />
     <Content Include="CustomerTemplate\fonts\fontawesome-webfont.woff2" />
     <Content Include="libman.json" />
+    <Content Include="AdminTemplate\assets\icon\icofont\fonts\icofont.eot" />
+    <Content Include="AdminTemplate\assets\icon\icofont\fonts\icofont.ttf" />
+    <Content Include="AdminTemplate\assets\icon\icofont\fonts\icofont.woff" />
+    <Content Include="AdminTemplate\assets\icon\themify-icons\fonts\themify.eot" />
+    <Content Include="AdminTemplate\assets\icon\themify-icons\fonts\themify.ttf" />
+    <Content Include="AdminTemplate\assets\icon\themify-icons\fonts\themify.woff" />
     <None Include="packages.config" />
     <Content Include="SellerTemplate\assets\extra-libs\datatables.net\package.json" />
     <Content Include="SellerTemplate\assets\extra-libs\datatables.net\Readme.md" />

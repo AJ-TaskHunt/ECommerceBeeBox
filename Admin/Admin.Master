@@ -17,6 +17,10 @@
     <!-- Custom CSS -->
     <link href="../AdminTemplate/assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../AdminTemplate/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+    <!-- themify-icons line icon -->
+    <link rel="stylesheet" type="text/css" href="../AdminTemplate/assets/icon/themify-icons/themify-icons.css">
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" href="../AdminTemplate/assets/icon/icofont/css/icofont.css">
     <!-- Custom CSS -->
     <link href="../AdminTemplate/dist/css/style.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -179,8 +183,6 @@
                                 aria-expanded="false"><i data-feather="message-square" class="feather-icon"></i><span
                                     class="hide-menu">SubCategory</span></a></li>
 
-
-
                             <li class="list-divider"></li>
                             <li class="nav-small-cap"><span class="hide-menu">Manage Product</span></li>
                             <li class="sidebar-item"><a class="sidebar-link sidebar-link" href="Product.aspx"
@@ -188,10 +190,13 @@
                                     class="hide-menu">Product</span></a></li>
 
                             <li class="list-divider"></li>
-                            <li class="nav-small-cap"><span class="hide-menu">Product Delivery Status</span></li>
+                            <li class="nav-small-cap"><span class="hide-menu">Manage Order</span></li>
                             <li class="sidebar-item"><a class="sidebar-link sidebar-link" href="OrderStatus.aspx"
                                 aria-expanded="false"><i data-feather="calendar" class="feather-icon"></i><span
                                     class="hide-menu">Order Status</span></a></li>
+                            <li class="sidebar-item"><a class="sidebar-link sidebar-link" href="OrderCancelStatus.aspx"
+                                aria-expanded="false"><i data-feather="calendar" class="feather-icon"></i><span
+                                    class="hide-menu">Order Cancel Status</span></a></li>
 
                             <li class="list-divider"></li>
                             <li class="nav-small-cap"><span class="hide-menu">Manage Customer</span></li>
@@ -202,7 +207,11 @@
                                 aria-expanded="false"><i data-feather="calendar" class="feather-icon"></i><span
                                     class="hide-menu">Customer Feedback</span></a></li>
 
-
+                            <li class="list-divider"></li>
+                            <li class="nav-small-cap"><span class="hide-menu">Selling Report</span></li>
+                            <li class="sidebar-item"><a class="sidebar-link sidebar-link" href="Report.aspx"
+                                aria-expanded="false"><i data-feather="calendar" class="feather-icon"></i><span
+                                    class="hide-menu">Report</span></a></li>
                         </ul>
                     </nav>
                     <!-- End Sidebar navigation -->

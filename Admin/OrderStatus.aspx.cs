@@ -43,9 +43,11 @@ namespace ECommerceBeeBox.Admin
             cmd = new SqlCommand("sp_GetOrderStatus", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            SqlDataReader dr = cmd.ExecuteReader();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
 
-            rOrderList.DataSource = dr;
+            rOrderList.DataSource = dt;
             rOrderList.DataBind();
 
 

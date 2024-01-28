@@ -83,6 +83,8 @@
                                             <th>Quantity</th>
                                             <th>Total Price</th>
                                             <th>Payment Mode</th>
+                                            <th>Customer Name</th>
+                                            <th>Customer Email</th>
                                             <th>IsCancel By Customer</th>
                                             <th class="dataTable-nosort">Edit</th>
                                         </tr>
@@ -112,9 +114,11 @@
                                     <td><%# Eval("TotalPrice") %></td>
 
                                     <td><%# Eval("PaymentMode") %></td>
+                                    <td><%# Eval("Name") %></td>
+                                    <td><%# Eval("Email") %></td>
 
                                     <td>
-                                        <asp:Label ID="lblIsActive" runat="server" Text='<%# (bool)Eval("IsCancel") == true ? "Not Cancel" : "Canceled" %>' CssClass='<%# (bool)Eval("IsCancel") == true ? "badge badge-success" : "badge badge-danger" %>'></asp:Label>
+                                        <asp:Label ID="lblIsActive" runat="server" Text='<%# (bool)Eval("IsCancel") == true ? "Not Cancel" : "Cancelled" %>' CssClass='<%# (bool)Eval("IsCancel") == true ? "badge badge-success" : "badge badge-danger" %>'></asp:Label>
                                     </td>
 
                                     <td>

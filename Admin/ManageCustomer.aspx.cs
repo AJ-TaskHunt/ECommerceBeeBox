@@ -16,7 +16,6 @@ namespace ECommerceBeeBox.Admin
     public partial class ManageCustomer : System.Web.UI.Page
     {
         string connectionStirng = WebConfigurationManager.ConnectionStrings["connection"].ConnectionString.ToString();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["AdminUser"] == null)

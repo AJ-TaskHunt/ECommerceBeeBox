@@ -77,7 +77,7 @@
     <script>
         function ContactUs() {
 
-            Swal.fire("Feedback Submitted Successfully!");
+            Swal.fire("Your inquiry has been received and we will take it into consideration. Thank you for reaching out!");
         }
 
         //for Limit Character In Input Field

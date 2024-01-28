@@ -14,24 +14,28 @@ namespace ECommerceBeeBox.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            if (Session["AdminUser"] == null)
-            {
-                Response.Redirect("AdminLogin.aspx");
-            }
-
             if (!IsPostBack)
             {
-                DashboardCount db = new DashboardCount();
 
-                Session["Customer"] = db.Count("CUSTOMER");
-                Session["Product"] = db.Count("PRODUCT");
-                Session["Category"] = db.Count("CATEGORY");
-                Session["SubCategory"] = db.Count("SUBCATEGORY");
+                if (Session["AdminUser"] == null)
+                {
+                    Response.Redirect("AdminLogin.aspx");
+                }
+                else
+                {
+                    DashboardCount db = new DashboardCount();
+
+                    Session["Customer"] = db.Count("CUSTOMER");
+                    Session["Blocked_Customer"] = db.Count("BLOCKED_CUSTOMER");
+                    Session["Product"] = db.Count("PRODUCT");
+                    Session["Category"] = db.Count("CATEGORY");
+                    Session["SubCategory"] = db.Count("SUBCATEGORY");
+                }
+
             }
         }
 
-        
+
 
 
     }

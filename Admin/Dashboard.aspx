@@ -1,80 +1,157 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="ECommerceBeeBox.Admin.Dashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="../AdminTemplate/assets/style.css" rel="stylesheet" />
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <!-- *************************************************************** -->
-    <!-- Start First Cards -->
-    <!-- *************************************************************** -->
-    
-            <div class="card-group">
-                <div class="card border-right">
-                    <div class="card-body">
-                        <div class="d-flex d-lg-flex d-md-block align-items-center">
-                            <div>
-                                <div class="d-inline-flex align-items-center">
-                                    <h2 class="text-dark mb-1 font-weight-medium"><%Response.Write(Session["Customer"]); %> 
-                                    </h2>
-
-                                </div>
-                                <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Customers</h6>
-                            </div>
-                            <div class="ml-auto mt-md-3 mt-lg-0">
-                                <span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card border-right">
-                    <div class="card-body">
-                        <div class="d-flex d-lg-flex d-md-block align-items-center">
-                            <div>
-                                <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><%Response.Write(Session["Product"]); %></h2>
-                                <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Products
-                                </h6>
-                            </div>
-                            <div class="ml-auto mt-md-3 mt-lg-0">
-                                <span class="opacity-7 text-muted"><i data-feather="dollar-sign"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card border-right">
-                    <div class="card-body">
-                        <div class="d-flex d-lg-flex d-md-block align-items-center">
-                            <div>
-                                <div class="d-inline-flex align-items-center">
-                                    <h2 class="text-dark mb-1 font-weight-medium"><%Response.Write(Session["Category"]); %></h2>
-                                    
-                                </div>
-                                <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Categories</h6>
-                            </div>
-                            <div class="ml-auto mt-md-3 mt-lg-0">
-                                <span class="opacity-7 text-muted"><i data-feather="file-plus"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex d-lg-flex d-md-block align-items-center">
-                            <div>
-                                <h2 class="text-dark mb-1 font-weight-medium"><%Response.Write(Session["SubCategory"]); %></h2>
-                                <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">SubCategories</h6>
-                            </div>
-                            <div class="ml-auto mt-md-3 mt-lg-0">
-                                <span class="opacity-7 text-muted"><i data-feather="globe"></i></span>
-                            </div>
-                        </div>
+    <div class="card-header">
+        <h1>Dashboard</h1>
+    </div>
+    <hr />
+    <div class="row">
+        <!-- card1 start -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card widget-card-1">
+                <div class="card-block-small">
+                    <i class="icofont icofont-game-console bg-c-blue card1-icon"></i>
+                    <span class="text-c-blue f-w-600">Categories</span>
+                    <h4><% Response.Write(Session["Category"]); %></h4>
+                    <div>
+                        <span class="f-left m-t-10 text-muted">
+                            <i class="text-c-blue f-16 icofont icofont-eye-alt"></i>
+                            <a href="Category.aspx">View</a>
+                        </span>
                     </div>
                 </div>
             </div>
-    
-    <!-- *************************************************************** -->
-    <!-- End First Cards -->
-    <!-- *************************************************************** -->
-    <!-- *************************************************************** -->
-   
-   
+        </div>
+        <!-- card1 end -->
+        <!-- card1 start -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card widget-card-1">
+                <div class="card-block-small">
+                    <i class="icofont icofont-game-pad bg-c-pink card1-icon"></i>
+                    <span class="text-c-pink f-w-600">Sub Categories</span>
+                    <h4><% Response.Write(Session["SubCategory"]); %></h4>
+                    <div>
+                        <span class="f-left m-t-10 text-muted">
+                            <i class="text-c-blue f-16 icofont icofont-eye-alt"></i>
+                            <a href="SubCategory.aspx">View</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- card1 end -->
+        <!-- card1 start -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card widget-card-1">
+                <div class="card-block-small">
+                    <i class="icofont icofont-game-control bg-c-green card1-icon"></i>
+                    <span class="text-c-green f-w-600">Products</span>
+                    <h4><% Response.Write(Session["Product"]); %></h4>
+                    <div>
+                        <span class="f-left m-t-10 text-muted">
+                            <i class="text-c-blue f-16 icofont icofont-eye-alt"></i>
+                            <a href="Product.aspx">View</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- card1 end -->
+        <!-- card1 start -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card widget-card-1">
+                <div class="card-block-small">
+                    <i class="icofont icofont-user bg-c-yellow card1-icon"></i>
+                    <span class="text-c-yellow f-w-600">Customers</span>
+                    <h4>Total : <% Response.Write(Session["Customer"]);%></h4>
+                    <div>
+                        <span class="f-left m-t-10 text-muted">
+                            <i class="text-c-blue f-16 icofont icofont-eye-alt"></i>
+                            <a href="ManageCustomer.aspx">View</a>
+
+
+
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- card1 end -->
+
+        <!-- card1 start -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card widget-card-1">
+                <div class="card-block-small">
+                    <i class="icofont icofont-box bg-c-yellow card1-icon"></i>
+                    <span class="text-c-yellow f-w-600">Total Orders</span>
+                    <h4><% Response.Write(Session["Customer"]);%></h4>
+                    <div>
+                        <span class="f-left m-t-10 text-muted">
+                            <i class="text-c-blue f-16 icofont icofont-eye-alt"></i>
+                            <a href="OrderStatus.aspx">View</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- card1 end -->
+
+        <!-- card1 start -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card widget-card-1">
+                <div class="card-block-small">
+                    <i class="icofont icofont-anchor bg-c-yellow card1-icon"></i>
+                    <span class="text-c-yellow f-w-600">Cancel Order</span>
+                    <h4><% Response.Write(Session["Customer"]);%></h4>
+                    <div>
+                        <span class="f-left m-t-10 text-muted">
+                            <i class="text-c-blue f-16 icofont icofont-eye-alt"></i>
+                            <a href="OrderCancelStatus.aspx">View</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- card1 end -->
+
+        <!-- card1 start -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card widget-card-1">
+                <div class="card-block-small">
+                    <i class="icofont icofont-book-alt bg-c-yellow card1-icon"></i>
+                    <span class="text-c-yellow f-w-600">Customer Feedback</span>
+                    <h4><% Response.Write(Session["Customer"]);%></h4>
+                    <div>
+                        <span class="f-left m-t-10 text-muted">
+                            <i class="text-c-blue f-16 icofont icofont-eye-alt"></i>
+                            <a href="Feedback.aspx">View</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- card1 end -->
+
+        <!-- card1 start -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card widget-card-1">
+                <div class="card-block-small">
+                    <i class="icofont icofont-offside bg-c-yellow card1-icon"></i>
+                    <span class="text-c-yellow f-w-600">Blocked Customer</span>
+                    <h4><% Response.Write(Session["Customer"]);%></h4>
+                    <div>
+                        <span class="f-left m-t-10 text-muted">
+                            <i class="text-c-blue f-16 icofont icofont-eye-alt"></i>
+                            <a href="ManageCustomer.aspx">View</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- card1 end -->
+    </div>
 </asp:Content>
