@@ -27,7 +27,17 @@ namespace ECommerceBeeBox.Admin
 
                     Session["Customer"] = db.Count("CUSTOMER");
                     Session["Blocked_Customer"] = db.Count("BLOCKED_CUSTOMER");
+                    Session["CustomerFeedback"] = db.Count("CUSTOMERFEEDBACK");
+
                     Session["Product"] = db.Count("PRODUCT");
+                    Session["SoldAmount"] = db.SoldAmount("SOLDAMOUNT");
+
+                    Session["TotalOrders"] = db.Count("TOTALORDER");
+                    Session["PendingOrders"] = db.Count("PENDINGORDER");
+                    Session["DispatchedOrders"] = db.Count("DISPATCHEDORDER");
+                    Session["DeliveredOrders"] = db.Count("DELIVEREDORDER");
+                    Session["CancelledOrders"] = db.Count("CANCELORDER");
+
                     Session["Category"] = db.Count("CATEGORY");
                     Session["SubCategory"] = db.Count("SUBCATEGORY");
                 }

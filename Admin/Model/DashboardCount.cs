@@ -34,21 +34,42 @@ namespace ECommerceBeeBox.Admin.Model
 
             while (reader.Read())
             {
-                if (reader[0] == DBNull.Value)
-                {
-                    count = 0;
-                }
-                else
-                {
-                    count = Convert.ToInt32(reader[0]);
-                }
+                count = Convert.ToInt32(reader[0]);
             }
+
 
             reader.Close();
             con.Close();
             return count;
         }
 
-        
+        public double SoldAmount(string tableName)
+        {
+            con = new SqlConnection(connectionString);
+            con.Open();
+
+            double count = 0;
+
+            cmd = new SqlCommand("sp_Dashboard", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Action", tableName);
+
+            reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                count = Convert.ToDouble(reader[0]);
+            }
+
+
+            reader.Close();
+            con.Close();
+            return count;
+        }
+
+
+
+
     }
 }
