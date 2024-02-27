@@ -16,7 +16,7 @@ namespace ECommerceBeeBox.Customer
         string connectionString = WebConfigurationManager.ConnectionStrings["Connection"].ConnectionString.ToString();
 
         SqlConnection con;
-        SqlCommand cmd;
+        //SqlCommand cmd;
         protected void Page_Load(object sender, EventArgs e)
         {
                 

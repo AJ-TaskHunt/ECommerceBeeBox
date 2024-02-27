@@ -21,6 +21,7 @@ namespace ECommerceBeeBox.Customer
             if(!IsPostBack)
             {
                 MainCategorie();
+                //customerFedback();
             }           
 
         }
@@ -63,5 +64,28 @@ namespace ECommerceBeeBox.Customer
                     break;
             }
         }
+
+        //public void customerFedback()
+        //{
+        //    using (SqlConnection con = new SqlConnection(connectionString))
+        //    {
+        //        con.Open();
+
+        //        using (SqlCommand cmd = new SqlCommand("select * from Contact", con))
+        //        {
+        //           DataTable dt = new DataTable();
+
+        //            SqlDataReader dr = cmd.ExecuteReader();
+
+        //            if(dr.Read())
+        //            {
+        //                dt.Load(dr);
+        //                rCustomerFeedback.DataSource = dt;
+        //                rCustomerFeedback.DataBind();
+        //            }
+                   
+        //        }
+        //    }
+        //}
     }
 }

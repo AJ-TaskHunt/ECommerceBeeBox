@@ -13,6 +13,7 @@ using System.Web.UI.HtmlControls;
 using static ECommerceBeeBox.Customer.Model.CartCrud;
 using ECommerceBeeBox.Customer.Model;
 using System.Web.UI.WebControls.WebParts;
+using System.Net;
 
 namespace ECommerceBeeBox.Customer
 {
@@ -83,15 +84,16 @@ namespace ECommerceBeeBox.Customer
 
         protected void rGames_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
+            int sessionId = Convert.ToInt32(Session["CustomerId"]);
+            int productId = Convert.ToInt32(e.CommandArgument);
+
             if (Session["CustomerId"] != null)
             {
                 bool isCartItemUpdated = false;
-                int sessionId = Convert.ToInt32(Session["CustomerId"]);
-                int productId = Convert.ToInt32(e.CommandArgument);
-                
+
                 int item = cartCrud.isItemExistsInCart(productId, sessionId);
 
-                if(item == 0)
+                if (item == 0)
                 {
                     //Add new item into Cart
                     using (SqlConnection con = new SqlConnection(connectionString))
@@ -104,10 +106,10 @@ namespace ECommerceBeeBox.Customer
 
                             cmd.Parameters.AddWithValue("@ProductId", productId);
                             cmd.Parameters.AddWithValue("@CustomerId", sessionId);
-                            cmd.Parameters.AddWithValue("@Qty",1);
+                            cmd.Parameters.AddWithValue("@Qty", 1);
 
                             int addToCart = cmd.ExecuteNonQuery();
-                            if(addToCart > 0 )
+                            if (addToCart > 0)
                             {
                                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "ItemAddedToCart();", true);
                             }
@@ -118,7 +120,7 @@ namespace ECommerceBeeBox.Customer
                 else
                 {
                     //Add existing item to cart
-                  isCartItemUpdated = cartCrud.updateCartQuantity(item +1, productId, sessionId);
+                    isCartItemUpdated = cartCrud.updateCartQuantity(item + 1, productId, sessionId);
 
                     ClientScript.RegisterStartupScript(this.GetType(), "alert", "ItemAddedToCart();", true);
                 }
@@ -130,6 +132,6 @@ namespace ECommerceBeeBox.Customer
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "showSweetAlert();", true);
             }
-        }        
+        }
     }
 }

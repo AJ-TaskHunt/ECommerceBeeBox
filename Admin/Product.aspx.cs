@@ -246,8 +246,6 @@ namespace ECommerceBeeBox.Admin
                         drSubCategory.Close();
                     }
 
-
-
                     if (ddlSubCategory.Items.FindByValue(selectedSubcategoryId) != null)
                     {
                         ddlSubCategory.SelectedValue = selectedSubcategoryId;

@@ -9,6 +9,8 @@ using System.Data.SqlClient;
 using System.Web.Configuration;
 using System.Data;
 using ECommerceBeeBox.Customer.Model;
+using System.Collections.Specialized;
+using System.Xml.Linq;
 
 namespace ECommerceBeeBox.Customer
 {
@@ -18,7 +20,7 @@ namespace ECommerceBeeBox.Customer
         CartCrud cartCrud = new CartCrud();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 ControllerCategories();
                 ControllerProduct();
@@ -77,11 +79,11 @@ namespace ECommerceBeeBox.Customer
 
         protected void rController_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
+            int sessionId = Convert.ToInt32(Session["CustomerId"]);
+            int productId = Convert.ToInt32(e.CommandArgument);
             if (Session["CustomerId"] != null)
             {
                 bool isCartItemUpdated = false;
-                int sessionId = Convert.ToInt32(Session["CustomerId"]);
-                int productId = Convert.ToInt32(e.CommandArgument);
 
                 int item = cartCrud.isItemExistsInCart(productId, sessionId);
 
@@ -117,13 +119,14 @@ namespace ECommerceBeeBox.Customer
                     ClientScript.RegisterStartupScript(this.GetType(), "alert", "ItemAddedToCart();", true);
                 }
 
-                Session["cartCount"] = cartCrud.cartCount(sessionId);
+                Session["cartCount"] = cartCrud.cartCount(sessionId); //Notification
 
             }
             else
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "showSweetAlert();", true);
+                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "showSweetAlert();", true);
             }
         }
+
     }
 }

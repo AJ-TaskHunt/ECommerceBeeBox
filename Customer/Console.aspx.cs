@@ -18,7 +18,7 @@ namespace ECommerceBeeBox.Customer
         CartCrud cartCrud = new CartCrud();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 ConsoleCategories();
                 ConsoleProduct();
@@ -75,11 +75,11 @@ namespace ECommerceBeeBox.Customer
 
         protected void rConsole_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
+            int sessionId = Convert.ToInt32(Session["CustomerId"]);
+            int productId = Convert.ToInt32(e.CommandArgument);
             if (Session["CustomerId"] != null)
             {
                 bool isCartItemUpdated = false;
-                int sessionId = Convert.ToInt32(Session["CustomerId"]);
-                int productId = Convert.ToInt32(e.CommandArgument);
 
                 int item = cartCrud.isItemExistsInCart(productId, sessionId);
 
@@ -120,8 +120,10 @@ namespace ECommerceBeeBox.Customer
             }
             else
             {
+              
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "showSweetAlert();", true);
             }
         }
+
     }
 }

@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Web.Configuration;
 using System.Data;
 using ECommerceBeeBox.Customer.Model;
+using System.Collections.Specialized;
 
 namespace ECommerceBeeBox.Customer
 {
@@ -29,14 +30,17 @@ namespace ECommerceBeeBox.Customer
             {
                 if (Session["CustomerId"] != null)
                 {
-                    CartItems();
+                    CartItems();                   
                 }
                 else
                 {
+                    
                     Response.Redirect("Login.aspx");
                 }
             }
         }
+
+      
 
         public void CartItems()
         {
@@ -210,7 +214,7 @@ namespace ECommerceBeeBox.Customer
 
                     TotalAmount += calcTotalPrice;
 
-                    Session["TotalAmount"] = TotalAmount;
+                    Session["TotalAmount"] = TotalAmount; //grandTotal
 
                 }
                 catch (Exception ex)

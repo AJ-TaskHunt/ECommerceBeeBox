@@ -102,7 +102,7 @@
                                     </td>
 
                                     <td>
-                                        <asp:Label ID="lblOrderStatus" runat="server" Text='<%# Eval("Status") %>' CssClass='<%# Eval("Status").ToString() == "Pending" ? "badge badge-warning" : "badge badge-success" %>'>
+                                        <asp:Label ID="lblOrderStatus" runat="server" Text='<%# Eval("Status") %>' CssClass='<%# Eval("Status").ToString() == "Pending" ? "badge badge-danger" : (Eval("Status").ToString()) == "Dispatched" ? "badge badge-warning" : (Eval("Status").ToString()) == "Delivered" ? "badge badge-success" : "" %>'>
                                         </asp:Label>
                                     </td>
 

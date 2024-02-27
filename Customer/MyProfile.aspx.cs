@@ -87,6 +87,7 @@ namespace ECommerceBeeBox.Customer
                 {
                     DataTable dtOrderHistory = new DataTable();
                     da.Fill(dtOrderHistory);
+
                     dtOrderHistory.Columns.Add("#", typeof(Int32));
                     if (dtOrderHistory.Rows.Count > 0)
                     {
@@ -94,7 +95,9 @@ namespace ECommerceBeeBox.Customer
                         {
                             loop["#"] = srno;
                             srno++;
+
                         }
+
                     }
                     if (dtOrderHistory.Rows.Count > 0)
                     {
@@ -164,7 +167,8 @@ namespace ECommerceBeeBox.Customer
                     DataTable dtOrder = new DataTable();
                     da.Fill(dtOrder);
                     if (dtOrder.Rows.Count > 0)
-                    {
+                    { 
+
                         foreach (DataRow loop in dtOrder.Rows)
                         {
                             TotalAmount += Convert.ToDouble(loop["TotalAmount"]);
@@ -187,6 +191,27 @@ namespace ECommerceBeeBox.Customer
             if (e.CommandName == "cancel")
             {
                 Response.Redirect("CancelOrder.aspx?id=" + e.CommandArgument);
+            }
+        }
+
+        protected void rOrderDetails_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                LinkButton lbtnCancel = e.Item.FindControl("lbtnCancel") as LinkButton;
+                Label lblStatus = e.Item.FindControl("lblStatus") as Label;
+
+                if (lblStatus != null && lbtnCancel != null)
+                {
+                    if (lblStatus.Text.Trim() == "Delivered")
+                    {
+                        lbtnCancel.Visible = false;
+                    }
+                    else
+                    {
+                        lbtnCancel.Visible = true;
+                    }
+                }
             }
         }
     }

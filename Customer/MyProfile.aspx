@@ -202,61 +202,67 @@
                                                             </div>
 
                                                             <asp:HiddenField ID="hfPaymentId" runat="server" Value='<%# Eval("PaymentId") %>' />
-                                                          
 
-                <asp:Repeater ID="rOrderDetails" runat="server" OnItemCommand="rOrderDetails_ItemCommand" >
-                    <HeaderTemplate>
-                        <table class="table data-table-export table-responsive-sm table-bordered table-hover">
-                            <thead>
-                                <tr class="bg-dark text-white">
-                                    <th>Product Name</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>OrderId</th>
-                                    <th>Total Price</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                    </HeaderTemplate>
-                    <ItemTemplate>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <asp:Label ID="lblProductName" runat="server" Text='<%# Eval("ProductName") %>'></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblPrice" runat="server" Text=' <%# string.IsNullOrEmpty( Eval("Price").ToString() ) ? "" : "₹" + Eval("Price") %>'></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblQty" runat="server" Text='<%# Eval("Quantity") %>'></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblOrderId" runat="server" Text='<%# Eval("OrderNo") %>'></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblTotal" runat="server" Text='<%# "₹" + Eval("TotalAmount") %>'></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblStatus" runat="server" Text='<%# Eval("Status") %>' CssClass='<%# Eval("Status").ToString() == "Pending" ? "badge badge-warning" : "badge badge-success" %>'></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:LinkButton ID="lbtnCancel" runat="server" Text="Cancel" CssClass="badge badge-danger" CommandName="cancel" CommandArgument='<%# Eval("OrderDetailsId") %>' OnClientClick="return confirm('Please confirm to Order Cancel')"></asp:LinkButton>
 
-                                                                               
-                                </td>
-                            </tr>
+                                                            <!-- Start Sub Repeater -->
+                                                            <asp:Repeater ID="rOrderDetails" runat="server" OnItemCommand="rOrderDetails_ItemCommand" OnItemDataBound="rOrderDetails_ItemDataBound">
+                                                                <HeaderTemplate>
 
-                    </ItemTemplate>
-                    <FooterTemplate>
-                         <tr>
-                            <td colspan="4"></td>
-                            <td><% Response.Write(Session["Prices"]); %></td>
-                        </tr>
-                        </tbody>
+                                                                    <table class="table data-table-export table-responsive-sm table-bordered table-hover">
+                                                                        <thead>
+                                                                            <tr class="bg-dark text-white">
+                                                                                <th>Product Name</th>
+                                                                                <th>Price</th>
+                                                                                <th>Quantity</th>
+                                                                                <th>OrderId</th>
+                                                                                <th>Total Price</th>
+                                                                                <th>Status</th>
+                                                                                <th>Action</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                </HeaderTemplate>
+                                                                <ItemTemplate>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                            
+                                                                                <asp:Label ID="lblProductName" runat="server" Text='<%# Eval("ProductName") %>'></asp:Label>
+                                                                            </td>
+                                                                            <td>
+                                                                                <asp:Label ID="lblPrice" runat="server" Text=' <%# string.IsNullOrEmpty( Eval("Price").ToString() ) ? "" : "₹" + Eval("Price") %>'></asp:Label>
+                                                                            </td>
+                                                                            <td>
+                                                                                <asp:Label ID="lblQty" runat="server" Text='<%# Eval("Quantity") %>'></asp:Label>
+                                                                            </td>
+                                                                            <td>
+                                                                                <asp:Label ID="lblOrderId" runat="server" Text='<%# Eval("OrderNo") %>'></asp:Label>
+                                                                            </td>
+                                                                            <td>
+                                                                                <asp:Label ID="lblTotal" runat="server" Text='<%# "₹" + Eval("TotalAmount") %>'></asp:Label>
+                                                                            </td>
+                                                                            <td>
+                                                                                <asp:Label ID="lblStatus" runat="server" Text='<%# Eval("Status").ToString() %>' CssClass='<%# Eval("Status").ToString() == "Pending" ? "badge badge-danger" : (Eval("Status").ToString()) == "Dispatched" ? "badge badge-warning" : (Eval("Status").ToString()) == "Delivered" ? "badge badge-success" : "" %>'></asp:Label>
+                                                                            </td>
+                                                                            <td>
+
+
+                                                                                <asp:LinkButton ID="lbtnCancel" runat="server" Text="Cancel" CssClass="badge badge-danger" CommandName="cancel" CommandArgument='<%# Eval("OrderDetailsId") %>'
+                                                                                    OnClientClick="return confirm('Please confirm to Order Cancel')"></asp:LinkButton>
+
+                                                                            </td>
+                                                                        </tr>
+
+                                                                </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    <tr>
+                                                                        <td colspan="4"></td>
+                                                                        <td><% Response.Write(Session["Prices"]); %></td>
+                                                                    </tr>
+                                                                    </tbody>
                         </table>
-                    </FooterTemplate>
-                </asp:Repeater>
+                                                                </FooterTemplate>
+                                                            </asp:Repeater>
+                                                            <!-- End Sub Repeater -->
 
                                                         </div>
                                                     </ItemTemplate>

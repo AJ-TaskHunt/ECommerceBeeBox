@@ -6,6 +6,9 @@ using System.Web;
 using System.Web.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using Org.BouncyCastle.Asn1.Ocsp;
+using System.Diagnostics;
+using System.Text;
 
 namespace ECommerceBeeBox.Customer.Model
 {
@@ -38,7 +41,6 @@ namespace ECommerceBeeBox.Customer.Model
                 }
             }
         }
-
         public bool updateCartQuantity(int qty, int productId, int CustomerId)
         {
             bool isUpdated = false;
@@ -89,6 +91,7 @@ namespace ECommerceBeeBox.Customer.Model
 
             return itemCount;
         }
+
 
 
         public static string GetUniqueId()
