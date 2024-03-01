@@ -186,11 +186,11 @@
                                     <i class="fa fa-phone" aria-hidden="true"></i>
                                 </a>--%>
 
-                                <div class="form-inline">
+                               <%-- <div class="form-inline">
                                     <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
                                         <i class="fa fa-search" aria-hidden="true"></i>
                                     </button>
-                                </div>
+                                </div>--%>
                                 <%-- <a href="#" class="order_online">Order Online
                                 </a>--%>
                                 <asp:LinkButton ID="lbtnLoginOrLogout" runat="server" CssClass="order_online" CausesValidation="false" OnClick="lbtnLoginOrLogout_Click"></asp:LinkButton>

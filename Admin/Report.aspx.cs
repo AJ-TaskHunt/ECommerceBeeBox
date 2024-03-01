@@ -25,11 +25,7 @@ namespace ECommerceBeeBox.Admin
                 if (Session["AdminUser"] == null)
                 {
                     Response.Redirect("LoginForm.aspx");
-                }
-                else
-                {
-                    //GetSellingReport(txtFromDate,txtToDate);
-                }
+                }                
             }
         }
 

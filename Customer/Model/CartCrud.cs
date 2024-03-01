@@ -22,21 +22,21 @@ namespace ECommerceBeeBox.Customer.Model
             {
                 con.Open();
 
-                using (SqlCommand cmd = new SqlCommand("select * from Cart where ProductId= @ProductId and CustomerId=@CustomerId", con))
+                using (SqlCommand cmd = new SqlCommand("select ProductId from Cart where ProductId= @ProductId and CustomerId=@CustomerId", con))
                 {
                     cmd.Parameters.AddWithValue("@ProductId", ProductId);
                     cmd.Parameters.AddWithValue("@CustomerId", sessionId);
 
                     using (SqlDataReader drCheckCartItem = cmd.ExecuteReader())
                     {
-                        int Qty = 0;
+                        int PId = 0;
                         if (drCheckCartItem.Read())
                         {
-                            Qty = Convert.ToInt32(drCheckCartItem["Quantity"].ToString());
+                            PId = Convert.ToInt32(drCheckCartItem["ProductId"].ToString());
 
                             //ClientScript.RegisterStartupScript(this.GetType(), "alert", "CartItemExists();", true);
                         }
-                        return Qty;
+                        return PId;
                     }
                 }
             }

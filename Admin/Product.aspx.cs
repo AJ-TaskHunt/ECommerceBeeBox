@@ -246,10 +246,10 @@ namespace ECommerceBeeBox.Admin
                         drSubCategory.Close();
                     }
 
-                    if (ddlSubCategory.Items.FindByValue(selectedSubcategoryId) != null)
-                    {
-                        ddlSubCategory.SelectedValue = selectedSubcategoryId;
-                    }
+                    //if (ddlSubCategory.Items.FindByValue(selectedSubcategoryId) != null)
+                    //{
+                             ddlSubCategory.SelectedValue = selectedSubcategoryId;
+                    //}
                     //  drUpdateProductData = cmd.ExecuteReader();
 
                     cbIsActive.Checked = isActive;
