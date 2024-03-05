@@ -17,6 +17,7 @@ namespace ECommerceBeeBox.Customer
         string ConnectionString = WebConfigurationManager.ConnectionStrings["connection"].ConnectionString.ToString();
         SqlConnection con;
         SqlCommand cmd;
+        int Productid = 0, Quantity=0;
         protected void Page_Load(object sender, EventArgs e)
         {
             con = new SqlConnection(ConnectionString);
@@ -25,6 +26,10 @@ namespace ECommerceBeeBox.Customer
             if (Session["CustomerId"] == null && Request.QueryString["id"] == null)
             {
                 Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                GetProductDetails();
             }
         }
 
@@ -44,11 +49,52 @@ namespace ECommerceBeeBox.Customer
 
             if(result > 0)
             {
+                UpdateQty(orderId);
+
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "OrderCancel();", true);
             }
             else
             {
                 Response.Redirect("<script> alert('Error'); </script>");
+            }
+        }
+
+        protected void UpdateQty(int OrderId)
+        {
+            cmd = new SqlCommand("select ProductId,Quantity from Orders where OrderDetailsId=@OrderId", con);
+            cmd.Parameters.AddWithValue("OrderId",OrderId);
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            if(rdr.Read())   
+            {
+                Productid = Convert.ToInt32(rdr["ProductId"].ToString());
+                Quantity = Convert.ToInt32(rdr["Quantity"].ToString());
+
+                ProductTableQty(Productid, Quantity);
+            }
+            rdr.Close();
+        }
+
+        protected void ProductTableQty(int pid, int Qty)
+        {
+            cmd = new SqlCommand("update Product set Quantity = Quantity + @Qty where ProductId=@pid",con);
+            cmd.Parameters.AddWithValue("@pid",pid);
+            cmd.Parameters.AddWithValue("@Qty",Qty);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        protected void GetProductDetails()
+        {
+            cmd = new SqlCommand("select p.ProductName from Orders o inner join Product p on o.ProductId = p.ProductId where OrderDetailsId = @id",con);
+
+            cmd.Parameters.AddWithValue("@id", Convert.ToInt32(Request.QueryString["id"]));
+
+            SqlDataReader GetProductName = cmd.ExecuteReader();
+
+            if(GetProductName.Read())
+            {
+                Session["PName"] = GetProductName["ProductName"];
             }
         }
     }

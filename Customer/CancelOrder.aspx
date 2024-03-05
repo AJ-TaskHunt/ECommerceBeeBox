@@ -61,6 +61,7 @@
                         <div class="card card-outline-secondary">
                             <div class="card-header">
                                 <h3 class="mb-0">Order Cancel</h3>
+                                <h4 class="mb-3"><span>Product Name :: </span><% Response.Write(Session["PName"]); %></h4>
                             </div>
                             <div class="card-body">
                                 <fieldset>
