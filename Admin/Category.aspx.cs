@@ -164,13 +164,23 @@ namespace ECommerceBeeBox.Admin
 
                 cmd.Parameters.AddWithValue("@CategoryId", CategoryId);
 
-                cmd.ExecuteNonQuery();
+                int result = cmd.ExecuteNonQuery();
 
-                lblmsg.Visible = true;
-                lblmsg.Text = "Category Deleted Successfully! ";
-                lblmsg.CssClass = "alert alert-success";
+                if (result > 0)
+                {
+                    lblmsg.Visible = true;
+                    lblmsg.Text = "Category Deleted Successfully! ";
+                    lblmsg.CssClass = "alert alert-success";
 
-                GetCategoryData();
+                    GetCategoryData();
+                }
+                else
+                {
+                    lblmsg.Visible = true;
+                    lblmsg.Text = "Category is assigned with SubCategory ";
+                    lblmsg.CssClass = "alert alert-danger";
+                }
+
             }
         }
 

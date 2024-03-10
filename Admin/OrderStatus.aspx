@@ -43,6 +43,8 @@
                                             <asp:ListItem>Pending</asp:ListItem>
                                             <asp:ListItem>Dispatched</asp:ListItem>
                                             <asp:ListItem>Delivered</asp:ListItem>
+                                            <asp:ListItem>Replacement In Process</asp:ListItem>
+                                            <asp:ListItem>Replacement Accepted</asp:ListItem>
                                         </asp:DropDownList>
 
                                         <asp:RequiredFieldValidator ID="rfvOrderStatus" runat="server" ControlToValidate="ddlOrderStatus" ErrorMessage="*" ForeColor="Red" Display="Dynamic" SetFocusOnError="true" InitialValue="0"></asp:RequiredFieldValidator>
@@ -56,7 +58,7 @@
                                     <asp:Button ID="btnClear" runat="server" CssClass="btn btn-dark" Text="Cancel" OnClick="btnClear_Click" />
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                 </div>
             </div>
@@ -86,6 +88,7 @@
                                             <th>Customer Name</th>
                                             <th>Customer Email</th>
                                             <th>IsCancel By Customer</th>
+                                            <th>IsReturn By Customer</th>
                                             <th class="dataTable-nosort">Edit</th>
                                         </tr>
                                     </thead>
@@ -102,7 +105,7 @@
                                     </td>
 
                                     <td>
-                                        <asp:Label ID="lblOrderStatus" runat="server" Text='<%# Eval("Status") %>' CssClass='<%# Eval("Status").ToString() == "Pending" ? "badge badge-danger" : (Eval("Status").ToString()) == "Dispatched" ? "badge badge-warning" : (Eval("Status").ToString()) == "Delivered" ? "badge badge-success" : "" %>'>
+                                        <asp:Label ID="lblOrderStatus" runat="server" Text='<%# Eval("Status") %>' CssClass='<%# Eval("Status").ToString() == "Pending" ? "badge badge-danger" : (Eval("Status").ToString()) == "Dispatched" ? "badge badge-warning" : (Eval("Status").ToString()) == "Delivered" ? "badge badge-success" : (Eval("Status").ToString()) == "Replacement In Process" ? "badge badge-info" : (Eval("Status").ToString()) == "Replacement Accepted" ? "badge badge-success" : ""%>'>
                                         </asp:Label>
                                     </td>
 
@@ -118,7 +121,10 @@
                                     <td><%# Eval("Email") %></td>
 
                                     <td>
-                                        <asp:Label ID="lblIsActive" runat="server" Text='<%# (bool)Eval("IsCancel") == true ? "Not Cancel" : "Cancelled" %>' CssClass='<%# (bool)Eval("IsCancel") == true ? "badge badge-success" : "badge badge-danger" %>'></asp:Label>
+                                        <asp:Label ID="lblIsActive" runat="server" Text='<%# (bool)Eval("IsCancel") == false ? "Not Cancel" : "Canceled" %>' CssClass='<%# (bool)Eval("IsCancel") == false ? "badge badge-success" : "badge badge-danger" %>'></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="Label1" runat="server" Text='<%# (bool)Eval("IsReturn") == true ? "YES" : "NO" %>' CssClass='<%# (bool)Eval("IsReturn") == false ? "badge badge-success" : "badge badge-danger" %>'></asp:Label>
                                     </td>
 
                                     <td>

@@ -225,7 +225,7 @@
                                                                     <tbody>
                                                                         <tr>
                                                                             <td>
-                                                                            
+
                                                                                 <asp:Label ID="lblProductName" runat="server" Text='<%# Eval("ProductName") %>'></asp:Label>
                                                                             </td>
                                                                             <td>
@@ -241,13 +241,15 @@
                                                                                 <asp:Label ID="lblTotal" runat="server" Text='<%# "₹" + Eval("TotalAmount") %>'></asp:Label>
                                                                             </td>
                                                                             <td>
-                                                                                <asp:Label ID="lblStatus" runat="server" Text='<%# Eval("Status").ToString() %>' CssClass='<%# Eval("Status").ToString() == "Pending" ? "badge badge-danger" : (Eval("Status").ToString()) == "Dispatched" ? "badge badge-warning" : (Eval("Status").ToString()) == "Delivered" ? "badge badge-success" : "" %>'></asp:Label>
+                                                                                <asp:Label ID="lblStatus" runat="server" Text='<%# Eval("Status").ToString() %>' CssClass='<%# Eval("Status").ToString() == "Pending" ? "badge badge-danger" : (Eval("Status").ToString()) == "Dispatched" ? "badge badge-warning" : (Eval("Status").ToString()) == "Delivered" ? "badge badge-success" : (Eval("Status").ToString()) == "Replacement In Process" ? "badge badge-info" : (Eval("Status").ToString()) == "Replacement Accepted" ? "badge badge-success" : "" %>'></asp:Label>
                                                                             </td>
                                                                             <td>
-
-
                                                                                 <asp:LinkButton ID="lbtnCancel" runat="server" Text="Cancel" CssClass="badge badge-danger" CommandName="cancel" CommandArgument='<%# Eval("OrderDetailsId") %>'
                                                                                     OnClientClick="return confirm('Please confirm to Order Cancel')"></asp:LinkButton>
+
+                                                                                <asp:LinkButton ID="lbtnReturnOrReplace" runat="server" Text="Replace Order" CssClass="badge badge-info" CommandName="ReturnOrReplace" CommandArgument='<%# Eval("OrderDetailsId") %>'
+                                                                                    OnClientClick="return confirm('Please confirm to Order Replace')" Visible="false"></asp:LinkButton>
+
 
                                                                             </td>
                                                                         </tr>

@@ -197,6 +197,9 @@
                             <li class="sidebar-item"><a class="sidebar-link sidebar-link" href="OrderCancelStatus.aspx"
                                 aria-expanded="false"><i data-feather="calendar" class="feather-icon"></i><span
                                     class="hide-menu">Order Cancel Status</span></a></li>
+                            <li class="sidebar-item"><a class="sidebar-link sidebar-link" href="OrderReplacedStatus.aspx"
+                                aria-expanded="false"><i data-feather="calendar" class="feather-icon"></i><span
+                                    class="hide-menu">Order Replacement Status</span></a></li>
 
                             <li class="list-divider"></li>
                             <li class="nav-small-cap"><span class="hide-menu">Manage Customer</span></li>

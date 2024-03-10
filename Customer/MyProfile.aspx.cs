@@ -192,6 +192,11 @@ namespace ECommerceBeeBox.Customer
             {
                 Response.Redirect("CancelOrder.aspx?id=" + e.CommandArgument);
             }
+
+            if(e.CommandName == "ReturnOrReplace")
+            {
+                Response.Redirect("ReturnOrReplace.aspx?id=" + e.CommandArgument);
+            }
         }
 
         protected void rOrderDetails_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -199,12 +204,20 @@ namespace ECommerceBeeBox.Customer
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 LinkButton lbtnCancel = e.Item.FindControl("lbtnCancel") as LinkButton;
+                LinkButton lbtnReturnOrReplace = e.Item.FindControl("lbtnReturnOrReplace") as LinkButton;
                 Label lblStatus = e.Item.FindControl("lblStatus") as Label;
 
                 if (lblStatus != null && lbtnCancel != null)
                 {
                     if (lblStatus.Text.Trim() == "Delivered")
                     {
+                        lbtnCancel.Visible = false;
+                        lbtnReturnOrReplace.Visible = true;
+                        
+                    }
+                    else if(lblStatus.Text.Trim() == "Replacement In Process" || lblStatus.Text.Trim() == "Replacement Accepted")
+                    {
+                        lbtnReturnOrReplace.Visible = false;
                         lbtnCancel.Visible = false;
                     }
                     else

@@ -538,6 +538,7 @@
     <Content Include="Admin\Feedback.aspx" />
     <Content Include="Admin\ManageCustomer.aspx" />
     <Content Include="Admin\OrderCancelStatus.aspx" />
+    <Content Include="Admin\OrderReplacedStatus.aspx" />
     <Content Include="Admin\OrderStatus.aspx" />
     <Content Include="Admin\Product.aspx" />
     <Content Include="Admin\Report.aspx" />
@@ -596,6 +597,7 @@
     <Content Include="Customer\MyProfile.aspx" />
     <Content Include="Customer\Payment.aspx" />
     <Content Include="Customer\Registration.aspx" />
+    <Content Include="Customer\ReturnOrReplace.aspx" />
     <Content Include="Customer\SliderUserControl.ascx" />
     <Content Include="Customer\UpdateCustomer.aspx" />
     <Content Include="Global.asax" />
@@ -1205,6 +1207,13 @@
     <Compile Include="Admin\OrderCancelStatus.aspx.designer.cs">
       <DependentUpon>OrderCancelStatus.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\OrderReplacedStatus.aspx.cs">
+      <DependentUpon>OrderReplacedStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\OrderReplacedStatus.aspx.designer.cs">
+      <DependentUpon>OrderReplacedStatus.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\OrderStatus.aspx.cs">
       <DependentUpon>OrderStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1360,6 +1369,13 @@
     </Compile>
     <Compile Include="Customer\Registration.aspx.designer.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\ReturnOrReplace.aspx.cs">
+      <DependentUpon>ReturnOrReplace.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\ReturnOrReplace.aspx.designer.cs">
+      <DependentUpon>ReturnOrReplace.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\SliderUserControl.ascx.cs">
       <DependentUpon>SliderUserControl.ascx</DependentUpon>

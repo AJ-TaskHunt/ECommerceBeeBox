@@ -43,7 +43,7 @@ namespace ECommerceBeeBox.Customer
             cmd.Parameters.AddWithValue("@CustomerId",CustomerId);
             cmd.Parameters.AddWithValue("@OrderId",orderId);
             cmd.Parameters.AddWithValue("@Message", txtMessage.Text);
-            cmd.Parameters.AddWithValue("@IsCancel",false);
+            cmd.Parameters.AddWithValue("@IsCancel",true);
 
             int result = cmd.ExecuteNonQuery();
 
@@ -57,6 +57,8 @@ namespace ECommerceBeeBox.Customer
             {
                 Response.Redirect("<script> alert('Error'); </script>");
             }
+
+            Session.Remove("PName");
         }
 
         protected void UpdateQty(int OrderId)
@@ -96,6 +98,8 @@ namespace ECommerceBeeBox.Customer
             {
                 Session["PName"] = GetProductName["ProductName"];
             }
+
+            GetProductName.Close();
         }
     }
 }
