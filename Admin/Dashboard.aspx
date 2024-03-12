@@ -15,7 +15,7 @@
             <div class="card widget-card-1">
                 <div class="card-block-small">
                     <i class="icofont icofont-game-console bg-c-blue card1-icon"></i>
-                    <span class="text-c-blue f-w-600">Categories</span>
+                    <span class="text-c-blue f-w-600">Categorie</span>
                     <h4><% Response.Write(Session["Category"]); %></h4>
                     <div>
                         <span class="f-left m-t-10 text-muted">
