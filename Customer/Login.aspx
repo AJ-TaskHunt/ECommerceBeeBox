@@ -10,7 +10,7 @@
             var second = 5;
             setTimeout(function () {
                 document.getElementById("<%= lblmsg.ClientID %>").style.display = "none";
-              }, second * 1000);
+            }, second * 1000);
         };
 
     </script>
@@ -47,6 +47,11 @@
                             <asp:Button ID="btnSignIn" runat="server" Text="Sign In" CssClass="btn btn-success rounded-pill pl-4 pr-4 text-white" OnClick="btnSignIn_Click" />
 
                             <span class="pl-3 text-info">New Customer? <a href="CustomerRegistration.aspx" class="badge badge-info">Register Here</a> </span>
+
+                        </div>
+                        <div class="mt-2">
+                            <span class="pl-1 text-dark"><a href="forgottenpassword.aspx"><i class="fa fa-lock mr-2"></i>Forgotten password?</a> </span>
+
                         </div>
                     </div>
                 </div>

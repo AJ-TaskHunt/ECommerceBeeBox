@@ -191,11 +191,12 @@
                                                                         <%# Eval("#") %>
                                                                     </span>
                                                                     Payment Mode: 
-                                    <%# Eval("PaymentMode").ToString() == "Card" ? Eval("PaymentMode").ToString().ToUpper() : "Cash On Delivery" %>
+                                                                         [<%# Eval("PaymentMode").ToString() == "Card" ? Eval("PaymentMode").ToString().ToUpper() : "Cash On Delivery" %>]
                                                                 </div>
                                                                 <div class="col-6 ">
                                                                     <%# Convert.ToInt64(Eval("CardNo")) == 0 ? "" : "Card No:"+ "************" + Convert.ToInt64( Eval("CardNo").ToString().Substring(Math.Max(0, Eval("CardNo").ToString().Length - 4))) %>
                                                                 </div>
+
                                                                 <div class="col-2">
                                                                     <a href="Invoice.aspx?pid=<%# Eval("PaymentId") %>"><i class="fa fa-download mr-2"></i>Invoice</a>
                                                                 </div>

@@ -119,7 +119,7 @@ namespace ECommerceBeeBox.Customer
                 "Product Name",
                 "Price",
                 "Quantity",
-                "Total Price",
+                "Total Price"
                 // Add more headers as needed
             };
 
