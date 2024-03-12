@@ -43,9 +43,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\TASK MASTER\OneDrive\.net\AjaxControlToolkit.dll</HintPath>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>C:\Users\AB\Downloads\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp, Version=4.1.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca">
       <SpecificVersion>False</SpecificVersion>

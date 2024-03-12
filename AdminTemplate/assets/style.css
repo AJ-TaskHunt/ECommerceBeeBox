@@ -8934,16 +8934,65 @@ table.footable-paging-center > tfoot > tr.footable-paging > td {
 .text-c-blue {
   color: #4680ff; }
 
+.bg-c-red {
+    background-color: red;
+}
+.text-c-red {
+    color: red;
+}
+
+.bg-c-brown {
+    background-color: saddlebrown;
+}
+.text-c-brown {
+    color: saddlebrown;
+}
+
+.bg-c-tomato {
+    background-color: tomato;
+}
+.text-c-tomato {
+    color: tomato;
+}
+
+.bg-c-violet {
+    background-color: #8524d4;
+}
+.text-c-violet {
+    color: #8524d4;
+}
+
+.bg-c-cyan {
+    background-color: #69e9fa;
+}
+.text-c-cyan {
+    color: #69e9fa;
+}
+
+.bg-c-purple {
+    background-color: #459972;
+}
+.text-c-purple {
+    color: #459972;
+}
+
+.bg-c-green {
+    background-color: #0acc1e;
+}
+.text-c-green {
+    color: #0acc1e;
+}
+
 .bg-c-pink {
   background-color: #FC6180; }
 
 .text-c-pink {
   color: #FC6180; }
 
-.bg-c-green {
+.bg-c-lgreen {
   background-color: #93BE52; }
 
-.text-c-green {
+.text-c-lgreen {
   color: #93BE52; }
 
 .bg-c-yellow {
@@ -8952,14 +9001,14 @@ table.footable-paging-center > tfoot > tr.footable-paging > td {
 .text-c-yellow {
   color: #FFB64D; }
 
-.bg-c-orenge {
-  background-color: #FE8A7D; }
+.bg-c-orange {
+  background-color: orange }
 
-.text-c-orenge {
+.text-c-orange {
   color: #FE8A7D; }
 
 .bg-c-lite-green {
-  background-color: #69CEC6; }
+  background-color: orange }
 
 .text-c-lite-green {
   color: #69CEC6; }

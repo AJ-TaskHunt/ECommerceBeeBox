@@ -27,7 +27,7 @@
             </div>
         </div>
         <!-- card1 end -->
-        <!-- card1 start -->
+        <!-- card2 start -->
         <div class="col-md-6 col-xl-3">
             <div class="card widget-card-1">
                 <div class="card-block-small">
@@ -43,13 +43,13 @@
                 </div>
             </div>
         </div>
-        <!-- card1 end -->
-        <!-- card1 start -->
+        <!-- card2 end -->
+        <!-- card3 start -->
         <div class="col-md-6 col-xl-3">
             <div class="card widget-card-1">
                 <div class="card-block-small">
-                    <i class="icofont icofont-game-control bg-c-green card1-icon"></i>
-                    <span class="text-c-green f-w-600">Products</span>
+                    <i class="icofont icofont-game-control bg-c-lgreen card1-icon"></i>
+                    <span class="text-c-lgreen f-w-600">Products</span>
                     <h4><% Response.Write(Session["Product"]); %></h4>
                     <div>
                         <span class="f-left m-t-10 text-muted">
@@ -60,8 +60,8 @@
                 </div>
             </div>
         </div>
-        <!-- card1 end -->
-        <!-- card1 start -->
+        <!-- card3 end -->
+        <!-- card4 start -->
         <div class="col-md-6 col-xl-3">
             <div class="card widget-card-1">
                 <div class="card-block-small">
@@ -80,14 +80,14 @@
                 </div>
             </div>
         </div>
-        <!-- card1 end -->
+        <!-- card4 end -->
 
-        <!-- card1 start -->
+        <!-- card5 start -->
         <div class="col-md-6 col-xl-3">
             <div class="card widget-card-1">
                 <div class="card-block-small">
-                    <i class="icofont icofont-box bg-c-yellow card1-icon"></i>
-                    <span class="text-c-yellow f-w-600">Total Orders</span>
+                    <i class="icofont icofont-box bg-c-orange card1-icon"></i>
+                    <span class="text-c-orange f-w-600">Total Orders</span>
                     <h4><% Response.Write(Session["TotalOrders"]);%></h4>
                     <div>
                         <span class="f-left m-t-10 text-muted">
@@ -98,14 +98,14 @@
                 </div>
             </div>
         </div>
-        <!-- card1 end -->
+        <!-- card5 end -->
 
-        <!-- card1 start -->
+        <!-- card6 start -->
         <div class="col-md-6 col-xl-3">
             <div class="card widget-card-1">
                 <div class="card-block-small">
-                    <i class="icofont icofont-anchor bg-c-yellow card1-icon"></i>
-                    <span class="text-c-yellow f-w-600">Cancel Order</span>
+                    <i class="icofont icofont-anchor bg-c-red card1-icon"></i>
+                    <span class="text-c-red f-w-600">Cancel Order</span>
                     <h4><% Response.Write(Session["CancelledOrders"]);%></h4>
                     <div>
                         <span class="f-left m-t-10 text-muted">
@@ -116,14 +116,14 @@
                 </div>
             </div>
         </div>
-        <!-- card1 end -->
+        <!-- card6 end -->
 
-        <!-- card1 start -->
+        <!-- card7 start -->
         <div class="col-md-6 col-xl-3">
             <div class="card widget-card-1">
                 <div class="card-block-small">
-                    <i class="icofont icofont-book-alt bg-c-yellow card1-icon"></i>
-                    <span class="text-c-yellow f-w-600">Customer Feedback</span>
+                    <i class="icofont icofont-book-alt bg-c-brown card1-icon"></i>
+                    <span class="text-c-brown f-w-600">Customer Feedback</span>
                     <h4><% Response.Write(Session["CustomerFeedback"]);%></h4>
                     <div>
                         <span class="f-left m-t-10 text-muted">
@@ -134,14 +134,14 @@
                 </div>
             </div>
         </div>
-        <!-- card1 end -->
+        <!-- card7 end -->
 
-        <!-- card1 start -->
+        <!-- card8 start -->
         <div class="col-md-6 col-xl-3">
             <div class="card widget-card-1">
                 <div class="card-block-small">
-                    <i class="icofont icofont-offside bg-c-yellow card1-icon"></i>
-                    <span class="text-c-yellow f-w-600">Blocked Customer</span>
+                    <i class="icofont icofont-offside bg-c-tomato card1-icon"></i>
+                    <span class="text-c-tomato f-w-600">Blocked Customer</span>
                     <h4><% Response.Write(Session["Blocked_Customer"]);%></h4>
                     <div>
                         <span class="f-left m-t-10 text-muted">
@@ -152,14 +152,14 @@
                 </div>
             </div>
         </div>
-        <!-- card1 end -->
+        <!-- card8 end -->
 
-        <!-- card1 start -->
+        <!-- card9 start -->
         <div class="col-md-6 col-xl-3">
             <div class="card widget-card-1">
                 <div class="card-block-small">
-                    <i class="icofont icofont-offside bg-c-yellow card1-icon"></i>
-                    <span class="text-c-yellow f-w-600">Pending Order</span>
+                    <i class="icofont icofont-offside bg-c-purple card1-icon"></i>
+                    <span class="text-c-purple f-w-600">Pending Order</span>
                     <h4><% Response.Write(Session["PendingOrders"]);%></h4>
                     <div>
                         <span class="f-left m-t-10 text-muted">
@@ -170,14 +170,14 @@
                 </div>
             </div>
         </div>
-        <!-- card1 end -->
+        <!-- card9 end -->
 
-        <!-- card1 start -->
+        <!-- card10 start -->
         <div class="col-md-6 col-xl-3">
             <div class="card widget-card-1">
                 <div class="card-block-small">
-                    <i class="icofont icofont-offside bg-c-yellow card1-icon"></i>
-                    <span class="text-c-yellow f-w-600">Dispached Order</span>
+                    <i class="icofont icofont-offside bg-c-cyan card1-icon"></i>
+                    <span class="text-c-cyan f-w-600">Dispached Order</span>
                     <h4><% Response.Write(Session["DispatchedOrders"]);%></h4>
                     <div>
                         <span class="f-left m-t-10 text-muted">
@@ -188,14 +188,14 @@
                 </div>
             </div>
         </div>
-        <!-- card1 end -->
+        <!-- card10 end -->
 
-        <!-- card1 start -->
+        <!-- card11 start -->
         <div class="col-md-6 col-xl-3">
             <div class="card widget-card-1">
                 <div class="card-block-small">
-                    <i class="icofont icofont-offside bg-c-yellow card1-icon"></i>
-                    <span class="text-c-yellow f-w-600">Delivered Order</span>
+                    <i class="icofont icofont-offside bg-c-violet	 card1-icon"></i>
+                    <span class="text-c-violet f-w-600">Delivered Order</span>
                     <h4><% Response.Write(Session["DeliveredOrders"]);%></h4>
                     <div>
                         <span class="f-left m-t-10 text-muted">
@@ -206,14 +206,14 @@
                 </div>
             </div>
         </div>
-        <!-- card1 end -->
+        <!-- card11 end -->
 
-        <!-- card1 start -->
+        <!-- card12 start -->
         <div class="col-md-6 col-xl-3">
             <div class="card widget-card-1">
                 <div class="card-block-small">
-                    <i class="icofont icofont-money-bag bg-c-yellow card1-icon"></i>
-                    <span class="text-c-yellow f-w-600">Sold Amount</span>
+                    <i class="icofont icofont-money-bag bg-c-green card1-icon"></i>
+                    <span class="text-c-green f-w-600">Sold Amount</span>
                     <h4>₹<% Response.Write(Session["SoldAmount"]);%></h4>
                     <div>
                         <span class="f-left m-t-10 text-muted">
@@ -224,6 +224,6 @@
                 </div>
             </div>
         </div>
-        <!-- card1 end -->
+        <!-- card12 end -->
     </div>
 </asp:Content>
