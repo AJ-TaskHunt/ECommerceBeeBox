@@ -589,6 +589,7 @@
     <Content Include="Customer\Controller.aspx" />
     <Content Include="Customer\CustomerRegistration.aspx" />
     <Content Include="Customer\Default.aspx" />
+    <Content Include="Customer\forgottenpassword.aspx" />
     <Content Include="Customer\Games.aspx" />
     <Content Include="Customer\Invoice.aspx" />
     <Content Include="Customer\Login.aspx" />
@@ -1317,6 +1318,13 @@
     </Compile>
     <Compile Include="Customer\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\forgottenpassword.aspx.cs">
+      <DependentUpon>forgottenpassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\forgottenpassword.aspx.designer.cs">
+      <DependentUpon>forgottenpassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\Games.aspx.cs">
       <DependentUpon>Games.aspx</DependentUpon>
